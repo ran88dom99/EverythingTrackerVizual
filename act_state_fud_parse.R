@@ -107,12 +107,12 @@ bad.activites<-c("a-internethypnotized", "a-wank", "a-rockingchair", "a-daydream
 
 ###### Activity extract quantities #######
 dt.act[,act1cQuant:=NA]
-dt.act[,act1cQuant:=as.character(str_extract( event,"(?<=[.-])[/1234567890.]+(hm)"))]
+dt.act[,act1cQuant:=as.character(str_extract( event,"(?<=[.-])[/1234567890.]+[hm]"))]
 dt.act$act1cQuant[dt.act$act1cQuant == "character(0)"]<-NA
 #dt.act[,act1cQuantgrmsoz:=str_detect(act1cQuant,"[hm]"),by=act1c]
 #dt.act$act1cQuantgrmsoz[is.na(dt.act$act1cQuantgrmsoz)]<-FALSE
 
-str_extract_all( "a-internethypnotized-1.5h","(?<=[.-])[/1234567890.hm]+(($)|(?=[.-]))")
+#str_extract_all( "a-internethypnotized-1.5h","(?<=[.-])[/1234567890.hm]+(($)|(?=[.-]))")
 
 for (itr in 1:length(dt.act$act1cQuant)) {
   worked_string<-dt.act$act1cQuant[itr]
@@ -201,6 +201,9 @@ dev.off()
 dt.state[,state1cQuant:=NA]
 dt.state[,state1cQuant:=as.character(str_extract( event,"(?<=[.-])[/1234567890g.]{1,4}(($)|(?=[.-]))"))]
 dt.state$state1cQuant[dt.state$state1cQuant == "character(0)"]<-NA
+dt.state[,state1cTime:=as.character(str_extract( event,"(?<=[.-])[/1234567890.]+[hm]"))]
+dt.state$state1cTime[dt.state$state1cTime == "character(0)"]<-NA
+
 dt.state[,state1cQuantgrmsoz:=str_detect(state1cQuant,"[g]"),by=state1c]
 dt.state$state1cQuantgrmsoz[is.na(dt.state$state1cQuantgrmsoz)]<-FALSE
 for (itr in 1:length(dt.state$state1cQuant)) {
