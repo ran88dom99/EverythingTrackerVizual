@@ -9,6 +9,9 @@ for(itr in 1:length(dt.time.loc.event$event)){
   }
 }
 
+#library(ggraptR)
+#ggraptR()
+
 #### Food ####
 dt.time.loc.event$notest[!is.na(dt.time.loc.event$locate_n_earplug)]<-NA
 sort((dt.time.loc.event$notest)) #  unique
@@ -93,8 +96,7 @@ ggplot(dt.drug, aes(y=drug1c, x=time)) +
   scale_size(range=c(1, 1)) + xlab("time") + ylab("f1c.count")
 dev.off()
 
-#library(ggraptR)
-#ggraptR()
+
 #### Activity ####
 dt.time.loc.event[,act:=notest]
 dt.time.loc.event$act[!str_detect(dt.time.loc.event$act, "^a-")]<-NA
@@ -197,49 +199,76 @@ ggplot(dt.state, aes(y=state1c, x=time)) +
   scale_size(range=c(1, 1)) + xlab("time") + ylab("f1c.count")
 dev.off()
 
-###### State extract quantities #######
+###### Status extract quantities #######
 dt.state[,state1cQuant:=NA]
 dt.state[,state1cQuant:=as.character(str_extract( event,"(?<=[.-])[/1234567890g.]{1,4}(($)|(?=[.-]))"))]
 dt.state$state1cQuant[dt.state$state1cQuant == "character(0)"]<-NA
-dt.state[,state1cTime:=as.character(str_extract( event,"(?<=[.-])[/1234567890.]+[hm]"))]
-dt.state$state1cTime[dt.state$state1cTime == "character(0)"]<-NA
+dt.state[,state1cDuration:=as.character(str_extract( event,"(?<=[.-])[1234567890]*?[./]*?[1234567890]+[hm]"))]
+dt.state$state1cDuration[dt.state$state1cDuration == "character(0)"]<-NA
 
-dt.state[,state1cQuantgrmsoz:=str_detect(state1cQuant,"[g]"),by=state1c]
-dt.state$state1cQuantgrmsoz[is.na(dt.state$state1cQuantgrmsoz)]<-FALSE
-for (itr in 1:length(dt.state$state1cQuant)) {
-  worked_string<-dt.state$state1cQuant[itr]
+for (itr in 1:length(dt.state$state1cDuration)) {
+  worked_string<-dt.state$state1cDuration[itr]
   if(!is.na(worked_string)){
     if(str_detect(worked_string,"[/]")){
       worked_string<-  as.numeric( str_extract_all( worked_string,"[1234567890]{1,3}(?=[/])"))/
         as.numeric( str_extract_all( worked_string,"(?<=[/])[1234567890]{1,3}"))
     }  
     if(str_detect(worked_string,"[\\p{Alphabetic}]")){
-      worked_string<-str_extract( worked_string,"[1234567890]{1,4}")
+      worked_string<-str_extract( worked_string,"[.1234567890]{1,5}")
     } 
-  } else {
-    if(sum(dt.state$state1cQuantgrmsoz[dt.state$state1c==dt.state$state1c[itr]] ,na.rm = T)>0){
-      dt.state$state1cQuantgrmsoz[itr]<-TRUE
-    } else {
-      worked_string<-1
-    }
   }
-  dt.state$state1cQuant[itr]<-worked_string
+  worked_string<-round(as.numeric(worked_string),3)
+  dt.state$state1cDuration[itr]<-worked_string
 }
-dt.state[,state1cMed:=as.character(median(as.numeric(state1cQuant),na.rm = T)),by=state1c]
-dt.state$state1cQuant<-as.numeric(dt.state$state1cQuant)
-dt.state$state1cMed<-as.numeric(dt.state$state1cMed)
-for (itr in 1:length(dt.state$state1cQuant)) {
-  if(is.na(dt.state$state1cQuant[itr])) {
-    dt.state$state1cQuant[itr]<-dt.state$state1cMed[itr]
-  }
-  if(dt.state$state1cQuantgrmsoz[itr]){
-    dt.state$state1cQuant[itr]<-dt.state$state1cQuant[itr]/dt.state$state1cMed[itr]
-  }
-}
-ggplot(dt.state, aes(y=state1cQuant, x=time)) + geom_path(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("state1cQuant")
 
-#set max bounds for the effect of a single logging of status 
+#dt.state[,state1cMed:=as.character(median(as.numeric(state1cQuant),na.rm = T)),by=state1c]
+dt.state$state1cQuant<-as.numeric(dt.state$state1cQuant)
+dt.state$state1cDuration<-as.numeric(dt.state$state1cDuration)
+ 
+dt.state$state1cQuant[is.na(dt.state$state1cQuant)]<-3
+
+#ggplot(dt.state, aes(y=state1cQuant, x=time)) + geom_path(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("state1cQuant")
+ggplot(dt.state, aes(y=state1cQuant, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("state1cQuant")
+
+# explicitly stated hours are only average of 1.5 <- 31/19. Stated becuse short! 
+#but I expect 2 records to last most of 16h day so 5? 
+#LATER remove at sleep cause symptoms tend at start so 3 hours cut off?  NO! MUST BE NA! ELSE PRE_SLEEP_CAUSES GET GREAT VALUES
+# but reduce to 75%? LATER or 3 day median? at 3 hour windows
+  
 #or maybe have list of percents and times because if its only slighty less i don't notice
 #for every state.1c, for every row, check row further ahead, 
 #if time-distance between the two points is higher than max bounds * 2
+
+#ONLY FOR LINE GRAPH WE WILL IGNORE IT cause scatter + line is really good enough 
 # add time to this row's, subtract from other's add event of 0 with new times
+dt.state[,state1cStart:=NA]
+dt.state[,state1cEnd:=NA]
+dt.state[]
+#i<-333
+for (i in 1:length(dt.state$state1cDuration)) {
+
+  if(!is.na(dt.state$state1cDuration[i])){
+    dt.state$state1cStart[i] <- dt.state$time[i] - dt.state$state1cDuration[i] * hour.constant / 2
+    dt.state$state1cEnd[i] <- dt.state$time[i] + dt.state$state1cDuration[i] * hour.constant / 2 
+  } else { 
+    dt.state$state1cStart[i] <-  dt.state$time[i] - 8 * hour.constant / 2
+    dt.state$state1cEnd[i] <- dt.state$time[i] + 8 * hour.constant / 2 
+   #CheckStart <- dt.state$time[i] - 8 * hour.constant
+    CheckEnd <- dt.state$time[i] + 8 * hour.constant
+    
+    inbounds.end <- dt.state[dt.state$time[i] < time & CheckEnd > time & state1c == dt.state$state1c[i]]
+    inbounds.start <- dt.state[dt.state$time[i] > time & CheckStart < time & state1c == dt.state$state1c[i]]
+    
+    if(nrow(inbounds.end) > 0){
+      inbounds.end<-inbounds.end[min(inbounds.end$time) == time]
+      dt.state$state1cEnd[i] <- (inbounds.end$time[1] - dt.state$time[i]) / 2  + dt.state$time[i]
+    }
+    if(nrow(inbounds.start) > 0){
+      inbounds.start<-inbounds.start[max(inbounds.start$time) == time]
+      dt.state$state1cStart[i] <- dt.state$time[i] - (dt.state$time[i] - inbounds.start$time[1]) / 2
+    }
+    
+    
+    dt.state$state1cDuration[i] <- (dt.state$state1cEnd[i] - dt.state$state1cStart[i]) /  hour.constant
+  }
+}
