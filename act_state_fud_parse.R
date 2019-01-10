@@ -105,7 +105,7 @@ dt.act<-dt.act[, .(inears,location.long,location,location.short,time,event)]
 dt.act[,act1c:=as.character(str_extract_all( event,"^a-[\\p{Alphabetic}]{1,30}"))]
 dt.act[,a1c.count:=.N,by=act1c]
 dt.act<-dt.act[a1c.count>4]
-bad.activites<-c("a-internethypnotized", "a-wank", "a-rockingchair", "a-daydreaming") #unique(dt.act$act1c)
+#unique(dt.act$act1c)
 
 ###### Activity extract quantities #######
 dt.act[,act1cQuant:=NA]
@@ -175,10 +175,7 @@ dt.state<-dt.state[, .(inears,location.long,location,location.short,time,event)]
 dt.state[,state1c:=as.character(str_extract_all( event,"^s-[\\p{Alphabetic}]{1,30}"))]
 dt.state[,s1c.count:=.N,by=state1c]
 dt.state<-dt.state[s1c.count>4]
-bad.state<-c(  "s-fart"     ,   "s-dizzy"     ,    "s-headache" ,   "s-nauseous"  ,  "s-eyeshurt" ,  
-               "s-rocking" ,    "s-sleep"   ,    "s-daydreaming" ,    "s-stomach"  ,    
-               "s-compulsion" , "s-lung"  ) #unique(dt.state$state1c)
-good.state<-c("s-excited","s-energetic")
+
 
 png(filename = paste0("statusviolin.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
@@ -243,7 +240,7 @@ ggplot(dt.state, aes(y=state1cQuant, x=time)) + geom_point(stat="identity", posi
 # add time to this row's, subtract from other's add event of 0 with new times
 dt.state[,state1cStart:=NA]
 dt.state[,state1cEnd:=NA]
-dt.state[]
+ 
 #i<-333
 for (i in 1:length(dt.state$state1cDuration)) {
 
@@ -253,7 +250,7 @@ for (i in 1:length(dt.state$state1cDuration)) {
   } else { 
     dt.state$state1cStart[i] <-  dt.state$time[i] - 8 * hour.constant / 2
     dt.state$state1cEnd[i] <- dt.state$time[i] + 8 * hour.constant / 2 
-   #CheckStart <- dt.state$time[i] - 8 * hour.constant
+    CheckStart <- dt.state$time[i] - 8 * hour.constant
     CheckEnd <- dt.state$time[i] + 8 * hour.constant
     
     inbounds.end <- dt.state[dt.state$time[i] < time & CheckEnd > time & state1c == dt.state$state1c[i]]
@@ -267,8 +264,14 @@ for (i in 1:length(dt.state$state1cDuration)) {
       inbounds.start<-inbounds.start[max(inbounds.start$time) == time]
       dt.state$state1cStart[i] <- dt.state$time[i] - (dt.state$time[i] - inbounds.start$time[1]) / 2
     }
-    
-    
     dt.state$state1cDuration[i] <- (dt.state$state1cEnd[i] - dt.state$state1cStart[i]) /  hour.constant
   }
 }
+dt.state$state1cDuration<-round(dt.state$state1cDuration,2)
+dt.state[,state1cImpact:=state1cDuration*state1cQuant]
+
+ggplot(dt.state, aes(y=state1cImpact, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("state1cQuant")
+
+
+# current calculation of impact means degree of 2 for one hour is same as degree of 1 for two hours
+# effectively degree is considered parametric

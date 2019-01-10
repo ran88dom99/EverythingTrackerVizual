@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 output/
+Thumbs.db
+.png

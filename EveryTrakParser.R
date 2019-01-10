@@ -278,6 +278,8 @@ if(length(dt.time.loc.event[dt.time.loc.event$checksum==10]$event)>0) stop("3 te
 if(length(dt.time.loc.event[dt.time.loc.event$checksum==5]$event)>0) stop("fewer than 5 columns filled in test dataset")
 print(dt.time.loc.event[dt.time.loc.event$checksum==7]$event)
 inspect.bad.checksum<-dt.time.loc.event[dt.time.loc.event$checksum==7]
+dt.time.loc.event[,m20lc:=NULL]
+dt.time.loc.event[,m19lc:=NULL]
 ####plot everything against time####
 
 library(dplyr)
