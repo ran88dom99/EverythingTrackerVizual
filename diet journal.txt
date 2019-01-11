@@ -967,6 +967,28 @@ five.to.five.is.twelve.hours s-e-out
  3:07 PM 1/9/2019 40VR 4:48 PM 1/9/2019 f-foj.hal.wal s-rocking.3  7:05 PM 1/9/2019 f-cookies.chc.benton
  9:43 PM 1/9/2019 s-rocking.1 f-potato.mo
  10:51 PM 1/9/2019 f-potatoes.mo a-rockingchair.10m s-stomach-ache.3 12:10 AM 1/10/2019 s-rocking.4
+ 3:38 AM 1/10/2019 a-wank.bed s-excited.5 s-daydreaming.6 where-house
+ 
+ 11:16 AM 1/10/2019 s-sleep.highpillow.contorted s-sleep.excited.not.enough.ofit s-excited.6 
+ 12:19 PM 1/10/2019 f-spinach-omlette f-cookies-chch.benton s-e-phon
+ 1:23 PM 1/10/2019 a-drive.30m.thinkaboutimmportantthings a-drive.30m.daydreaming
+ 3:29 PM 1/10/2019 s-rocking.3 s-headache.3.back.tumor a-rockingchair.20m s-tired.sit.and.think.excitedly.30m
+ 4:21 PM 1/10/2019 a-rockingchair.20m s-e-out
+ 5:16 PM 1/10/2019 f-burg-mcd.1.4 s-headache.3.backhead f-ensure.hp
+ 6:15 PM 1/10/2019 a-drive.60m.productivefocusedthought s-tired a-rockingchair.10m
+ 7:17 PM 1/10/2019 f-subway.1/2
+ 7:21 PM 1/10/2019 71VR 19vzl 127vzs 
+ 8:03 PM 1/10/2019 35;1m20lc 2m5x3dm 11-8-10sc 16-13-12sc   s-excited.4 s-fart.3
+ 9:07 PM 1/10/2019 f-fishstiks.mo f-foj.hal.ald 10:00 PM 1/10/2019 s-rocking.2 s-stomach-ache.3
+ 10:55 PM 1/10/2019 f-subway.1/2 I.forgot.that.every.function.in.R.has.weight.and.only.remembered.by.reading.main.manual
+ 12:41 AM 1/11/2019 s-dizzy.1 1:09 AM 1/11/2019 a-internethypnotized.1h 1:27 AM 1/11/2019 a-AMV.20m s-rocking.4
+ 2:27 AM 1/11/2019 f-water.pure.wal d-ibp s-e-in
+ 5:27 AM 1/11/2019 a-wank.bed.2h
+ 
+ 2:59 PM 1/11/2019 a-wank.bed.3h s-sleep.contorted s-headache.3.contortion.back s-eyestrain.4
+ 3:13 PM 1/11/2019 f-chocolate.carmcrave f-cookies-chch.benton 35;2SET 
+ 3:28 PM 1/11/2019 47VR 97VR 18vzl 167vzs 
+ 3:51 PM 1/11/2019 15;1m19lc 30;1m5x3dm 12-12-10sc
  
  density where part of the density is defined by a number rather than event. bar graphs?
  
