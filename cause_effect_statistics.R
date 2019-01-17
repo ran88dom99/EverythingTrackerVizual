@@ -1,9 +1,13 @@
+#source("runfirst.R")
+library(data.table)
+library(ggplot2)
 # update dt.time.loc.event to current standards
 dt.test<-dt.time.loc.event[!is.na(istest)][checksum>7]
 columns.after<-which(names(dt.test)=="checksum") -1
 columns.before<-which(names(dt.test)=="istest") +1 
 dt.temporary<-dt.test[, (((columns.after:columns.before))),with=FALSE]
 dt.test$test1cQuant<- apply(dt.temporary,1, min, na.rm=TRUE)
+# m19lc and m20lc should merge 
 
 # dt.state dt.drug dt.food dt.act
 # label datapoints by type
@@ -48,8 +52,8 @@ window.lengths <- c(.5,1,10,30,60,180,600,1200,6000,15000) * minute.constant
 window.lengths <- round(window.lengths, digits = 5)
 compare.window <- 3
 df.record <- data.frame(
-  highest.effect=1, cause=1, cause.count=1, effect=1, effect.count=1, window=1,
-  incubation=1, comparison.count=1)
+  highest.effect=1, spearman.ext.ci=1, cause=1, cause.count=1, effect=1, effect.count=1, comparison.count=1, window=1,
+  incubation=1,  time.cor.mpct=1, time.cor.cted=1)
 (df.record <- df.record[FALSE, ])
 
 for (cause in causes.unique) {
@@ -81,11 +85,15 @@ for (cause in causes.unique) {
         effect.count<-sum(dt.worked[inzone == T]$effect)
         dt.worked<-dt.worked[inzone == T & effect == T]
         comparison.count <- sum(dt.worked$impacted==0)
-        if(effect.count<6) next()
+        if((effect.count+comparison.count)<6) next()
+        
+        time.cor.mpct<-round(cor(dt.worked$time,dt.worked$impact), digits = 3)
+        time.cor.cted<-round(cor(dt.worked$time,dt.worked$impacted), digits = 3)
         
         try({
         corr<-cor.test( dt.worked$impact, dt.worked$impacted,
-                        alternative="two" , method = "pearson" , exact=F )
+                        alternative="two" , method = "pearson" ,
+                        exact=F , conf.level = 0.99 )
         if(is.na(corr)) next()
         a  <- corr$conf.int[1]
         b <- corr$conf.int[2]
@@ -98,10 +106,30 @@ for (cause in causes.unique) {
         }
         highest.effect<-round(highest.effect, digits = 3)
         
+        library(DescTools)#via z-transform
+        corr<-SpearmanRho( dt.worked$impact, dt.worked$impacted,
+                           use = "everything", conf.level = 0.99 )        
+        #library(RVAideMemoire)#via bootstrap
+        #corr<-spearman.ci(dt.worked$impact, dt.worked$impacted,
+        #                  nrep = 1000, conf.level = 0.95)
+        
+        a  <- corr[2]
+        b <- corr[3]
+        spearman.ext.ci <- 0
+        if(sign(a)==sign(b)){
+          if(sign(a)>0)
+            spearman.ext.ci<-min(a,b)
+          if(sign(a)<0)
+            spearman.ext.ci<-max(a,b)
+        }
+        spearman.ext.ci<-round(spearman.ext.ci, digits = 3)
+        
         df.record<-rbind(df.record,
-                         data.frame(highest.effect , cause, cause.count, 
-                                    effect, effect.count, window,
-                                    incubation, comparison.count))
+                         data.frame(highest.effect, spearman.ext.ci, cause, cause.count, 
+                                    effect, effect.count, comparison.count,
+                                    window, incubation,  
+                                     time.cor.mpct, time.cor.cted)
+                         )
         print(paste(
           highest.effect , cause, cause.count, effect, effect.count, window,
           incubation, comparison.count
@@ -118,21 +146,24 @@ if(F)
   df.record<-data.table(df.record)
   df.record[,abs.hi.cor:=abs(highest.effect)] 
   str(df.record)
-  df.rework<-data.table(df.record[(!str_detect(df.record$effect, "-")),])
+  df.rework<-data.table(df.record[window<.5])
   df.rework[,abs.hi.cor:=abs(highest.effect)]
 
   
   cor.test(df.rework$abs.hi.cor,df.rework$window) #25% at 1/20 2-sided
-  cor.test(df.rework$abs.hi.cor,df.rework$incubation)
+  cor.test(df.rework$abs.hi.cor,df.rework$incubation) #6%
   cor.test(df.rework$abs.hi.cor,df.rework$cause.count)
-  cor.test(df.rework$abs.hi.cor,df.rework$effect.count)#-7%
+  cor.test(df.rework$abs.hi.cor,df.rework$effect.count)# 
   cor.test(df.rework$abs.hi.cor,df.rework$comparison.count) #-11%
   
   df.rework2<-df.rework[df.rework$effect %in% c("p","VR","m20lc","m19lc")]
-  
-  
-  
-  #record.entry<- df.rework2[2501,];datasource<-dt.recombined
+   
+  df.record[,time.cor:= (time.cor.mpct * time.cor.cted )]
+  df.record[,mean.cor:= (spearman.ext.ci + highest.effect) / 2 ]
+  df.record[,most.interesting:= (mean.cor/time.cor)]
+              
+  record.entry<- df.rework[3345,];datasource<-dt.recombined
+  drawrecord(df.record[35390,],dt.recombined)
   drawrecord <- function(record.entry,datasource)
   {
     cause<-record.entry$cause[1]; effect<-record.entry$effect[1]; 
@@ -167,17 +198,38 @@ if(F)
     
     #see what the correlation (impact and impacted) is actualy based on then 
     #timelines of both cause and effect
-    print(ggplot(dt.worked[inzone == T & effect==T], aes(y=impact, x=impacted)) + geom_point(stat="identity", position="jitter", alpha=0.5, size=3) + geom_smooth(stat="smooth", position="identity", method="auto", formula=y ~ x, se=TRUE, n=80, level=0.95, span=0.75) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 3)) + xlab("impacted") + ylab("impact")
-    )
-    print(ggplot(dt.worked[inzone == T & effect==T], aes(y=impact, x=time)) + geom_point(stat="identity", position="jitter", alpha=0.5, size=3) + geom_smooth(stat="smooth", position="identity", method="auto", formula=y ~ x, se=TRUE, n=80, level=0.95, span=0.75) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 3)) + xlab("time") + ylab("impact")
-    )
-    print(ggplot(dt.worked[inzone == T & effect==T], aes(y=impacted, x=time)) + geom_point(stat="identity", position="jitter", alpha=0.5, size=3) + geom_smooth(stat="smooth", position="identity", method="auto", formula=y ~ x, se=TRUE, n=80, level=0.95, span=0.75) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 3)) + xlab("time") + ylab("impacted")
-    )
-    print(ggplot(dt.worked[inzone == T & cause==T], aes(x = time, weights = impact)) + geom_density(adjust = 1/4)
+    first.day<-min(dt.worked[inzone==T]$time); last.day<-max(dt.worked[inzone==T]$time)
+    print(paste(
+       min(dt.worked$time), first.day, last.day,  max(dt.worked$time )
+      ))
+    
+    print(ggplot(dt.worked[inzone == T & effect==T], aes(y=impact, x=impacted)) + geom_point(stat="identity", alpha=0.5, size=3) + geom_smooth(stat="smooth", position="identity", method="auto", formula=y ~ x, se=TRUE, n=80, level=0.95, span=0.75) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 3)) + xlab("impacted") + ylab("impact")
+    )# position="jitter",
+    print(ggplot(dt.worked[inzone == T & effect==T], aes(y=impact, x=time)) + geom_point(stat="identity",  alpha=0.5, size=3) + geom_smooth(stat="smooth", position="identity", method="auto", formula=y ~ x, se=TRUE, n=80, level=0.95, span=0.75) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 3)) + xlab("time") + ylab("impact") + expand_limits(x = c(first.day, last.day))
+    )#position="jitter",
+    print(ggplot(dt.worked[inzone == T & effect==T], aes(y=impacted, x=time)) + geom_point(stat="identity",  alpha=0.5, size=3) + geom_smooth(stat="smooth", position="identity", method="auto", formula=y ~ x, se=TRUE, n=80, level=0.95, span=0.75) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 3)) + xlab("time") + ylab("impacted") + expand_limits(x = c(first.day, last.day))
+    )#position="jitter",
+    print(ggplot(dt.worked[inzone == T & cause==T], aes(x = time, weights = impact)) + geom_density(adjust = 1/4) + expand_limits(x = c(first.day, last.day))
     )
     #ggplot(dt.worked[inzone == T & cause==T], aes(x=time)) + geom_density(aes(y=..density..), stat="density", position="identity", alpha=0.5,adjust = 1/4) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density")
     
   }
-  drawrecord(df.rework2[4700,],dt.recombined)
-  
 }
+# test spearman CI times? 
+# activity and state effects
+# the way I calculate state (time * degree)
+# short windows with very short "comparison window" for testing for short, small effects
+# and bigger windows for example time-card scores stabbalizing with rocking.starting
+# really this is just finding a point to chop the learning curve at
+# all the perifiral data (quantmind, sleep&walk , weather)
+# decent enough analyses of cognitive tests
+
+# problems detected ###
+# pivot points (spearman fixes this)
+# too few points run ggplot crazy and can align perfectly
+
+# correlation over time; learning curve is a pretty common problem; 
+# corr over time is not always learning curve problem though;
+# TimeToMem20 score grew right about the time rocking started
+# might be a coincidence but extremely unlikely
+# revisit 14404 and environs 

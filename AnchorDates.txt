@@ -4,3 +4,12 @@
 2nd of January switched to
 For pain I use a scale where 1 is just barely detectable, 3 is impossible to miss,
  5 affects my ability to work and at 7 is my main and pressing concern. 
+ 
+ 
+ 
+ 
+ 
+Plans Concerns
+
+# current calculation of impact, especialy stateus,  means degree of 2 for one hour is same as degree of 1 for two hours
+# effectively degree is considered parametric

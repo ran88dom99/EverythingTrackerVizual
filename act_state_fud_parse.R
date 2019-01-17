@@ -76,6 +76,11 @@ ggplot(dt.food, aes(y=food1c, x=time)) +
   scale_size(range=c(1, 1)) + xlab("time") + ylab("f1c.count")
 dev.off()
 
+png(filename = paste0("food_weighd_density.png"), width = 1366/itemNlargeConst,
+    height = 768/itemNlargeConst)
+ggplot(dt.food, aes(x = time, weights = food1cQuant)) + geom_density(adjust = 1/16) + facet_grid(food1c ~ .) 
+dev.off()
+
 #### Drug ####
 dt.time.loc.event[,drug:=notest]
 dt.time.loc.event$drug[!str_detect(dt.time.loc.event$drug, "^d-")]<-NA
@@ -96,6 +101,10 @@ ggplot(dt.drug, aes(y=drug1c, x=time)) +
   scale_size(range=c(1, 1)) + xlab("time") + ylab("f1c.count")
 dev.off()
 
+png(filename = paste0("drug_weighd_density.png"), width = 1366/itemNlargeConst,
+    height = 768/itemNlargeConst)
+ggplot(dt.drug, aes(x = time, weights = 1)) + geom_density(adjust = 1/8) + facet_grid(drug1c ~ .) 
+dev.off()
 
 #### Activity ####
 dt.time.loc.event[,act:=notest]
@@ -146,7 +155,7 @@ for (itr in 1:length(dt.act$act1cQuant)) {
 }
 #why not just always impute over medians? if no median detected then 1h?
 #setting to 1 must precede medianization? no?
-
+dt.act$act1cQuant<-as.numeric(dt.act$act1cQuant)
 
 png(filename = paste0("actviolin.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
@@ -167,6 +176,17 @@ ggplot(dt.act, aes(y=act1c, x=time)) +
   scale_size(range=c(1, 1)) + xlab("time") + ylab("f1c.count")
 dev.off()
 
+png(filename = paste0("act_weighd_density.png"), width = 1366/itemNlargeConst,
+    height = 768/itemNlargeConst)
+ggplot(dt.act, aes(x = time, weights = act1cQuant)) + geom_density(adjust = 1/8) + facet_grid(act1c ~ .) 
+dev.off()
+
+maxtime<-max(dt.act$time)
+png(filename = paste0("act_weighd_density_recent.png"), width = 1366/itemNlargeConst,
+    height = 768/itemNlargeConst)
+ggplot(dt.act, aes(x = time, weights = act1cQuant)) + geom_density(adjust = 1/8) +
+  facet_grid(act1c ~ .)  + xlim(maxtime-20,maxtime )
+dev.off()
 #### State Symptom ####
 dt.time.loc.event[,state:=notest]
 dt.time.loc.event$state[!str_detect(dt.time.loc.event$state, "^s-")]<-NA
@@ -269,9 +289,20 @@ for (i in 1:length(dt.state$state1cDuration)) {
 }
 dt.state$state1cDuration<-round(dt.state$state1cDuration,2)
 dt.state[,state1cImpact:=state1cDuration*state1cQuant]
+maxtime<-max(dt.state$time)
 
 ggplot(dt.state, aes(y=state1cImpact, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("state1cQuant")
+ggplot(dt.state, aes(y=state1cQuant, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("state1cQuant")+ xlim(maxtime-20,maxtime )
+  
+png(filename = paste0("status_weighd_density.png"), width = 1366/itemNlargeConst,
+    height = 768/itemNlargeConst)
+ggplot(dt.state, aes(x = time, weights = state1cImpact)) + geom_density(adjust = 1/8) + facet_grid(state1c ~ .) 
+dev.off()
 
+png(filename = paste0("status_weighd_density_limd.png"), width = 1366/itemNlargeConst,
+    height = 768/itemNlargeConst)
+ggplot(dt.state, aes(x = time, weights = state1cImpact)) + geom_density(adjust = 1/8) +
+  facet_grid(state1c ~ .)  + xlim(maxtime-20,maxtime )
+dev.off()
+# + expand_limits(x = c(first.day, last.day)) 
 
-# current calculation of impact means degree of 2 for one hour is same as degree of 1 for two hours
-# effectively degree is considered parametric
