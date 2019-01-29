@@ -38,7 +38,8 @@ dt.recombined<-rbindlist(list(dt.test[, .(inears,location.long,location,location
 summary(dt.recombined)
 dt.recombined<-dt.recombined[order(time)]
 dt.recombined$impact <- as.numeric(dt.recombined$impact)
-
+dt.recombined[,orgquant:=NA]
+dt.recombined$orgquant[dt.recombined$category == "state"] <- as.numeric(dt.state$state1cQuant) #length(dt.state$state1cQuant);length(dt.recombined$orgquant[dt.recombined$category == "state"])
 # for every cause 
 # and interesting effects 
 # for a set of durations/windows 
@@ -160,10 +161,20 @@ if(F)
    
   df.record[,time.cor:= (time.cor.mpct * time.cor.cted )]
   df.record[,mean.cor:= (spearman.ext.ci + highest.effect) / 2 ]
-  df.record[,most.interesting:= (mean.cor/time.cor)]
-              
+  df.record[,positivity:= mean.cor>0 ]
+  df.record[,most.interesting:= 
+              (mean.cor>0) * (mean.cor>time.cor) * (mean.cor-time.cor) +
+              (mean.cor<0) * (mean.cor<time.cor) * (mean.cor-time.cor) 
+            ]
+  df.record[,most.pearson:= 
+              (highest.effect>0) * (highest.effect>time.cor) * (highest.effect-time.cor) +
+              (highest.effect<0) * (highest.effect<time.cor) * (highest.effect-time.cor) 
+            ]
+  dt.over20.records<-df.record[(effect.count+comparison.count) > 30]       
+  
+  
   record.entry<- df.rework[3345,];datasource<-dt.recombined
-  drawrecord(df.record[35390,],dt.recombined)
+  drawrecord(df.record[23321,],dt.recombined)
   drawrecord <- function(record.entry,datasource)
   {
     cause<-record.entry$cause[1]; effect<-record.entry$effect[1]; 

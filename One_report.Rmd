@@ -1,0 +1,79 @@
+---
+title: "Report for my doc R Notebook"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+Run after Everytracparse, ac stat fud and first section of cause effect stats.
+
+Barcode graphs (histogram with very thin bins) of fresh orange juice, ensure, tea and every drug. Also includes 1d kernel density estimation. First graph is of all time while second is of the past 20 days.
+
+```{r}
+dt.worked<-dt.recombined[(category ==  "drug") | (first_level_of_event %in% c("f-foj","f-ensure"))]
+#dt.worked
+
+
+ggplot(dt.worked, aes(x=time)) + geom_density(aes(y=(..scaled..)  ), stat="density", position="identity", alpha=0.5, adjust = 1/8) + geom_histogram( stat="bin", position="stack", alpha=1, bins=1000) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density")
+
+#ggplot(dt.worked, aes(x = time, weights = impact)) + geom_density(adjust = 1/8) +
+#  facet_grid(first_level_of_event ~ .)  
+
+ggplot(dt.worked, aes(x=time)) + geom_density(aes(y=..scaled.. ), stat="density", position="identity", alpha=0.5, adjust = 1/8) + geom_histogram( stat="bin", position="stack", alpha=1, bins=1000) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density") + xlim(maxtime - 20, maxtime)
+
+#ggplot(dt.worked, aes(x = time, weights = impact)) + geom_density(adjust = 1/8) +
+#  facet_grid(first_level_of_event ~ .) + xlim(maxtime - 20, maxtime)
+
+
+```
+ 
+```{r}
+remove <- c("a-bath","a-sleep","a-drive")
+dt.worked <- dt.recombined[(category ==  "act")]
+dt.worked$first_level_of_event[ dt.worked$first_level_of_event == "a-wank" ] <- "a-stare"
+dt.worked <- dt.worked[!(first_level_of_event %in% remove)]
+dt.worked$first_level_of_event[ dt.worked$first_level_of_event %in% c("a-gym","a-tennis") ] <- "a-exercise"
+#dt.worked
+#summary(dt.worked)
+```
+Most activities recorded. Gym and tennis combined into exercise. AMV and rocking (in a chair) cause brain damage.  Internet hypnotized and stare are similar. Daydreaming is probably more extreme case.  New graph type added. Dot represents event. X axis is time. Y axis is duration of event.
+```{r}
+ggplot(dt.worked, aes(x=time)) + geom_density(aes(y=..scaled.., weights = impact ), stat="density", position="identity", alpha=0.5, adjust = 1/8) + geom_histogram( stat="bin", position="stack", alpha=1, bins=1000) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density")
+ 
+if(F){
+ggplot(dt.worked, aes(x=time, colour=first_level_of_event)) +   geom_histogram( stat="bin", position="stack", alpha=1, bins=3000)  + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density")
+}
+  
+ggplot(dt.worked, aes(y=impact, x=time)) +  geom_point(aes(colour=first_level_of_event),  stat="identity", position="identity", alpha=1, size=2) + geom_line(aes(colour=first_level_of_event), stat="identity", position="identity", alpha=0.7) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("hours")
+
+ggplot(dt.worked, aes(x=time)) + geom_density(aes(y=..scaled.., weights = impact ), stat="density", position="identity", alpha=0.5, adjust = 1/8) + geom_histogram( stat="bin", position="stack", alpha=1, bins=1000) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density") + xlim(maxtime - 20, maxtime)
+  
+ggplot(dt.worked, aes(y=impact, x=time)) +  geom_point(aes(colour=first_level_of_event),  stat="identity", position="identity", alpha=0.8, size=3) + geom_line(aes(colour=first_level_of_event), stat="identity", position="identity", alpha=0.7) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("hours")  + xlim(maxtime - 20, maxtime)
+```
+ 
+ 
+```{r}
+interesting <- c("s-dizzy"  ,  "s-fart"  , "s-headache"  ,  "s-nauseous"   ,  "s-rocking" ,     "s-daydreaming",    "s-stomach"   ,  "s-compulsion" , "s-lung"     , "s-earache" ,    "s-ergonomics")
+dt.worked <- dt.recombined[(category ==  "state")]
+unique(dt.worked$first_level_of_event)
+dt.worked <- dt.worked[(first_level_of_event %in% interesting)]
+#dt.worked
+#summary(dt.worked)
+```
+
+Interesting states and symptoms. This time "density" of black and white graph is based on duration and degree of symptom multiplied. 2 hours at pain 3 is 6 at that location. Colorful graph however only measures degree of symptom and long streches free of points indicate that symptom causes nothing. 
+```{r}
+ggplot(dt.worked, aes(x=time)) + geom_density(aes(y=..scaled.., weights = impact ), stat="density", position="identity", alpha=0.5, adjust = 1/8) + geom_histogram( stat="bin", position="stack", alpha=1, bins=1000) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density")
+ 
+if(F){
+ggplot(dt.worked, aes(x=time, colour=first_level_of_event)) +   geom_histogram( stat="bin", position="stack", alpha=1, bins=3000)  + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density")
+}
+  
+ggplot(dt.worked, aes(y=orgquant, x=time)) +  geom_point(aes(colour=first_level_of_event),  stat="identity", position="identity", alpha=1, size=2) + geom_line(aes(colour=first_level_of_event), stat="identity", position="identity", alpha=0.7) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("hours")
+
+ggplot(dt.worked, aes(x=time)) + geom_density(aes(y=..scaled.., weights = impact ), stat="density", position="identity", alpha=0.5, adjust = 1/8) + geom_histogram( stat="bin", position="stack", alpha=1, bins=1000) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("density") + xlim(maxtime - 20, maxtime)
+  
+ggplot(dt.worked, aes(y=orgquant, x=time)) +  geom_point(aes(colour=first_level_of_event),  stat="identity", position="identity", alpha=0.8, size=3) + geom_line(aes(colour=first_level_of_event), stat="identity", position="identity", alpha=0.7) + facet_grid(first_level_of_event ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("hours")  + xlim(maxtime - 20, maxtime)
+```

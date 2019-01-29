@@ -1,0 +1,78 @@
+#TO DO ALL TRACKER HEALTH ANALYTICS PROJECT
+
+  get miband data out then 
+try out the competitors/coworkers 
+   
+Github has many of these resources. Start there.
+PLATFORM FOR RARE EVENTS DETECTION AND TIME CORRELATION ETC POSSIBLY AI WORK
+ IF NO COMPETITOR HAS SIMILAR ALGORITHM
+ rare events, time  series, causeation analysis, time analysis,
+ multi-armedbandit-fuzzy-problem, 
+ many-expiraments-at-once, false-discovery-rates.
+ games with coaches? and statistics to recommend this or that
+ look at stats to remember; already contains an anti-trending lead
+ 
+try out my competitors 12:39 PM 1/14/2019 
+ zenobase is nice... idk
+ datasense 
+ openhuman must be at least a beginner/1course programmer and statistician but I can contribute directly
+ exist.io
+
+An android journal app; See if i can find something better than mysymptoms.
+ 
+ report on each individual outcome variable needs notes printed that is cat and first level and degree removed
+ 
+ remove duration degree and firstlevel/categ for notes
+  
+ check for separate notes mentioning the event type
+ 
+ rewrite parts of txt file not up to standard
+
+ designate decimals using commas
+ 
+ 
+ just on one var by time
+  rolling center 
+  rolling spread
+  rolling extremes
+  cycle/periodicity/mcmc?
+  
+ extract learnin curve? define learning curve
+ What window or function is best for determining upcoming datapoint? longest that predicts almost as well as best.
+ 
+ short window short incubation already repeated multiple times
+	many waves not one or single spline
+ 	backup from similar effects 
+	 or at least checked that they could not have been measured
+ same as above but not yet done and interesting
+
+ 
+ 
+ state act graphs. MANY
+ before cleanup must determine structure and heirarchy
+ cleanup diet journal file.
+ state act effects.
+ cog test learning curve removal. Learning curve is smallest isotonic window 
+ cog test scores analysis ; rolling window graph, reall correlation then path analysis. EFA PCA!
+ data sources; weather, quant mind, 3 wearables
+ 
+ quantify then quantity graphs and cleanup old data. 
+ 
+  
+dexterity testing method 6:38 PM 1/7/2019
+  
+midquant parser converter. 5:00 PM 12/19/2018
+
+cause effect simple samplers 10:12 PM 12/12/2018
+
+lots of cleanup and updating 9:37 PM 12/26/2018 
+
+Everythin about test interactions: learn alot more about time series analysis esp tools in taskview 10:04 PM 12/12/2018
+just correlation matrix using only real?? data and including least interesting in 20 bound 10:08 PM 12/12/2018
+What about efa pca on missing data 10:06 PM 12/12/2018
+
+
+newest ailments before leaving must consult doctors with 3:07 PM 12/11/2018
+ get data from googlefit and miwatch2 and weather 3:05 PM 12/11/2018
+ analysis must include severity scores? for symptoms and maybe duration? 3:07 PM 12/11/2018
+ 

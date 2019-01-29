@@ -185,8 +185,9 @@ maxtime<-max(dt.act$time)
 png(filename = paste0("act_weighd_density_recent.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
 ggplot(dt.act, aes(x = time, weights = act1cQuant)) + geom_density(adjust = 1/8) +
-  facet_grid(act1c ~ .)  + xlim(maxtime-20,maxtime )
+  facet_grid(act1c ~ .) + xlim(maxtime - 20, maxtime)
 dev.off()
+
 #### State Symptom ####
 dt.time.loc.event[,state:=notest]
 dt.time.loc.event$state[!str_detect(dt.time.loc.event$state, "^s-")]<-NA
