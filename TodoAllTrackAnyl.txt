@@ -1,4 +1,22 @@
 #TO DO ALL TRACKER HEALTH ANALYTICS PROJECT
+Tracker Journal Report
+  after checking all others have made see todonew
+  category graphs (already done?)
+  Single event type page;
+    One of the eda packages does this automaticaly
+    NAME 
+	DESCRIPTION
+	Single graph like in category graphs
+	  with lower levels of heirarchy colorcoding
+      also in full and 20 days
+	  color used to indicate height
+	Notes Timeline under each main graph so every mentioned note is visible
+	  along side with notes attached reading left to right
+	or just table
+	Then possible causeffects
+	  include probability and overlap graphs
+	  Again notes if both items included
+	  also strongly effected and co-ocurred
 
   get miband data out then 
 try out the competitors/coworkers 
@@ -18,6 +36,20 @@ try out my competitors 12:39 PM 1/14/2019
  openhuman must be at least a beginner/1course programmer and statistician but I can contribute directly
  exist.io
 
+ analyse the mnemosyne dataset? that is memeory dataset
+ its one of the memorization softwares
+ psychometrics, apced repetition, anki, supermemo
+ https://en.wikipedia.org/wiki/Neuropsychological_test
+ 
+ Get the book "Practical Experiment Designs for Engineers an Scientists" by William J. Diamond. In your initiating post, you mention 8 variables you want to test, each with a high/low value (e.g. on/off, yes/no, etc.) If you're only interested in main effects (i.e. you have reason to assume interactions between your variables are not significant), you can use a resolution III design. The book is basically a recipe book: you have your sigma (standard deviation) because you've done ANKI test duplicates before, use alpha=beta=0.1 and delta=2.5*sigma to get your sample size (N-high=N-low). Then follow the recipe to lay out, perform then analyze the results. These values for alpha (manufacturer's risk; you say something is different when it's not), beta (consumer's risk; you say there is no difference when there is) and delta (difference you want to detect) are good starting points for an initial round of experimentation.
+
+You should do residuals analysis before reaching conclusions to ensure there isn't a time effect. If there is a time effect (sequential repeats improve the response) you'll need to account for that in follow-up experiments.
+
+The book has a computer program you can run. Alternatively, the recipe is so easy to follow you can do it with some columns on a piece of paper with a pencil.
+
+If you're going to do 60 days of work, you might as well be able to say something with a quantifiable amount of confidence. If you're going to do a multivariate test, use a multivariate experimental design.
+ 
+ 
 An android journal app; See if i can find something better than mysymptoms.
  
  report on each individual outcome variable needs notes printed that is cat and first level and degree removed
