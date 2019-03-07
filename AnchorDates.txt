@@ -14,3 +14,5 @@ Plans Concerns
 
 # current calculation of impact, especialy stateus,  means degree of 2 for one hour is same as degree of 1 for two hours
 # effectively degree of stateus is considered interval 
+
+# at highest lumbar puncture headache got 9 (with nausea, went to hospital) but at first sat at 7. I could not do anything is lumbar puncture headache was not sated

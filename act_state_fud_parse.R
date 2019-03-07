@@ -290,7 +290,7 @@ for (i in 1:length(dt.state$state1cDuration)) {
 }
 dt.state$state1cDuration<-round(dt.state$state1cDuration,2)
 dt.state[,state1cImpact:=state1cDuration*state1cQuant]
-maxtime<-max(dt.state$time)
+maxtime<-max(dt.state$time)+.8
 
 ggplot(dt.state, aes(y=state1cImpact, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("state1cQuant")
 ggplot(dt.state, aes(y=state1cQuant, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(state1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("state1cQuant")+ xlim(maxtime-20,maxtime )

@@ -17,7 +17,8 @@ Tracker Journal Report
 	  include probability and overlap graphs
 	  Again notes if both items included
 	  also strongly effected and co-ocurred
-
+	across category comparison
+	  
   get miband data out then 
 try out the competitors/coworkers 
    
@@ -48,6 +49,16 @@ You should do residuals analysis before reaching conclusions to ensure there isn
 The book has a computer program you can run. Alternatively, the recipe is so easy to follow you can do it with some columns on a piece of paper with a pencil.
 
 If you're going to do 60 days of work, you might as well be able to say something with a quantifiable amount of confidence. If you're going to do a multivariate test, use a multivariate experimental design.
+ 
+ 
+ 
+ filter is what ever rule helps predict both next it and others! that is make many P frame columns
+ 
+ 
+ accelerometer recoreder for rocking. see my comments in "digital biomarkers" on reddit
+ 
+any games with coaches and really close statistics recording?
+or should I just glue together python 
  
  
 An android journal app; See if i can find something better than mysymptoms.

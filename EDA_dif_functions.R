@@ -18,12 +18,12 @@
 #all functions would have to calculate on unknown number of variables
 #intake would have to be a df, get the column names too
 
-
 #```{r}
 #binned 2d frequency.
 source("runfirst.R")
-library(MASS)
-library(ggplot2)
+require(MASS)
+require(ggplot2)
+
 if(F){df<-exp.df}
 DIY2D<-function(df,nbins=200){
   # OPTION 5: The Hard Way (DIY) # rbloggers 5 ways density

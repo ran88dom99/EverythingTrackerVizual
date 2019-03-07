@@ -1,23 +1,28 @@
 source("runfirst.R")
-library(lubridate)
-library(dplyr)
-library(stringr)
+require(lubridate)
+require(dplyr)
+require(stringr)
 
-#read file 3 ways
+ 
+# read file 3 ways
 fileName <- 'diet journal.txt'
 singleString1 <- readChar(fileName, file.info(fileName)$size)
-singleString2 <- paste(readLines(fileName), collapse=" ")
-singleString3 <- scan(fileName, what="character", sep=NULL)
-#1 best because \r\n included but 3 comes pre chopped
+# singleString2 <- paste(readLines(fileName), collapse=" ")
+# singleString3 <- scan(fileName, what="character", sep=NULL)
+# 1 best because \r\n included but 3 comes pre chopped
 # grep can not deal with variable lookahead
+# convert "# notes notes" to "#.notes.notes"
+pound.notes <- str_locate_all(singleString1,"#.+\r\n")[[1]]
+str_sub(singleString1, pound.notes) <- str_replace_all( str_sub(singleString1, pound.notes), " ", ".")
+
 # remove date spaces then chop by spaces
 str_extract_all(singleString1,"[1234567890]{1,2}:[1234567890]{1,2}[[:blank:]](AM|PM)[ ][1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4}")
-singleString1<-str_replace_all(singleString1,"(?<=[1234567890]{1,2}:[1234567890]{1,2})[ ](?=AM|PM [1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4})","")
-singleString1<-str_replace_all(singleString1,"(?<=[1234567890]{1,2}:[1234567890]{1,2}(AM|PM))[ ](?=[1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4})","")
+singleString1 <- str_replace_all(singleString1,"(?<=[1234567890]{1,2}:[1234567890]{1,2})[ ](?=AM|PM [1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4})","")
+singleString1 <- str_replace_all(singleString1,"(?<=[1234567890]{1,2}:[1234567890]{1,2}(AM|PM))[ ](?=[1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4})","")
 str_extract_all(singleString1,"[1234567890]{1,2}:[1234567890]{1,2}(AM|PM)[1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4}")
-split_date_txt<-str_replace_all(singleString1,"(\r)|(\n)"," ")
-split_date_txt<-str_split(split_date_txt,"[ ](?=[1234567890]{1,2}:[1234567890]{1,2}(AM|PM)[1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4})")[[1]]
-split_space_txt<-str_split(split_date_txt," ")
+split_date_txt <- str_replace_all(singleString1,"(\r)|(\n)"," ")
+split_date_txt <- str_split(split_date_txt,"[ ](?=[1234567890]{1,2}:[1234567890]{1,2}(AM|PM)[1234567890]{1,2}/[1234567890]{1,2}/[1234567890]{4})")[[1]]
+split_space_txt <- str_split(split_date_txt," ")
 #character vector chopped by space creating list of characters
 
 minute.constant<-1/(24*60)

@@ -1,12 +1,12 @@
-#source("runfirst.R")
-library(data.table)
-library(ggplot2)
+source("runfirst.R")
+require(data.table)
+require(ggplot2)
 # update dt.time.loc.event to current standards
-dt.test<-dt.time.loc.event[!is.na(istest)][checksum>7]
-columns.after<-which(names(dt.test)=="checksum") -1
-columns.before<-which(names(dt.test)=="istest") +1 
-dt.temporary<-dt.test[, (((columns.after:columns.before))),with=FALSE]
-dt.test$test1cQuant<- apply(dt.temporary,1, min, na.rm=TRUE)
+dt.test <- dt.time.loc.event[!is.na(istest)][checksum>7]
+columns.after <- which(names(dt.test)=="checksum") -1
+columns.before <- which(names(dt.test)=="istest") +1 
+dt.temporary <- dt.test[, (((columns.after:columns.before))),with=FALSE]
+dt.test$test1cQuant <- apply(dt.temporary,1, min, na.rm=TRUE)
 # m19lc and m20lc should merge 
 
 # dt.state dt.drug dt.food dt.act
@@ -25,7 +25,7 @@ bad.state<-c(  "s-fart"     ,   "s-dizzy"     ,    "s-headache" ,   "s-nauseous"
                "s-compulsion" , "s-lung"  ) #unique(dt.state$state1c)
 good.state<-c("s-excited","s-energetic")
 dt.test[,cause:=FALSE];dt.state[,cause:=TRUE];dt.food[,cause:=TRUE];dt.drug[,cause:=TRUE];dt.act[,cause:=TRUE];
-dt.test[,Effect_of_interest:=TRUE];dt.state[,Effect_of_interest:=F];dt.food[,Effect_of_interest:=FALSE];dt.drug[,Effect_of_interest:=FALSE];
+dt.test[,Effect_of_interest:= TRUE];dt.state[,Effect_of_interest:=F];dt.food[,Effect_of_interest:=FALSE];dt.drug[,Effect_of_interest:=FALSE];
 dt.act[,Effect_of_interest:= F] #first_level_of_event %in% bad.activites];
 
 #dt.recombined<-dt.test[, .(inears,location.long,location,location.short,time,event,first_level_of_event,impact,category,Effect_of_interest,cause)] 
