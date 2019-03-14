@@ -1006,7 +1006,7 @@ five.to.five.is.twelve.hours s-e-out
 12:00 PM 1/12/2019 f-cookies-chch.benton s-headache.0 
 12:20 PM 1/12/2019 30;1m20lc 15;2m5x3dm 12-7-14sc s-ergonomics.computerdown.onpillow
 12:27 PM 1/12/2019 67VR 19vzl 165vzs s-nauseous.1 12:47 PM 1/12/2019 s-compulsion-rock.3 22;4SET s-ergonomics.computerup.backpillow
- 1:28 PM 1/12/2019 s-rocking.2 1:48 PM 1/12/2019 f-ensure.hp 2:17 PM 1/12/2019 sa-internethypnotized.20m
+ 1:28 PM 1/12/2019 s-rocking.2 1:48 PM 1/12/2019 f-ensure.hp 2:17 PM 1/12/2019 a-internethypnotized.20m
  2:25 PM 1/12/2019 s-farting.2 2:44 PM 1/12/2019 s-constipation.2 s-bloodybutt.2 s-stomach-ache.4.liver s-lung-ache.1 
  3:28 PM 1/12/2019 s-rocking.0 s-ergonomics.computerdown.elbowsonpillow.chinonpuff
  4:33 PM 1/12/2019 f-foj.hal.ald  s-ergonomics.pillow.back s-rocking.0 s-e-out
@@ -1173,7 +1173,7 @@ five.to.five.is.twelve.hours s-e-out
 12:40 PM 1/26/2019 s-mediumpillow.second-pillow-under-back a-wank.bed.1h s-eyeshurt.2 s-dizzy.0 s-headache.1 s-rocking.2 again-I-can-not-differenciate.headache.and.eyeshurt.though-headache-is-there 12:59 PM 1/26/2019 s-lung-itch.1 s-stomachache.1 1:08 PM 1/26/2019 s-e-out s-earache.2 s-dizzy.2  d-vitC.1g f-water-zeph-big
  1:33 PM 1/26/2019 f-bread.dd f-spread.guac.dd s-stomachache.2 dizzy-and-stomachache-increase-with-movement-and-food s-fart.1 s-constipation.3.and-pressure-again
  3:04 PM 1/26/2019 f-sub-pux.1/2 4:00 PM 1/26/2019 2m20lc 20;1m5x3dm 
- 4:25 PM 1/26/2019 17-15-9 115VR 17vzl 220vzs 4:57 PM 1/26/2019 7SET 
+ 4:25 PM 1/26/2019 17-15-9sc 115VR 17vzl 220vzs 4:57 PM 1/26/2019 7SET 
  5:17 PM 1/26/2019 f-cereal.almondoats.pux f-water.zeph.big d-vitC.1g s-stomach-ache.1 s-energetic.1
  6:00 PM 1/26/2019 a-drive.30m.daydream 
  9:00 PM 1/26/2019 f-sub-pux.1/2
@@ -1308,7 +1308,7 @@ five.to.five.is.twelve.hours s-e-out
  8:36 PM 2/4/2019 f-water-zeph-big f-cereal.toastedoats.pux d-vitC-1g 
  8:52 PM 2/4/2019 s-rocking.2 s-headache.3 headache.related.to.screen.size
  9:06 PM 2/4/2019 s-coldsensitive
-11:00 PM 2/4/2019 a-stationbicycle-walking.90m  f-water-zeph-big f-cereal.toastedoats.pux d-vitC-1g  e-constipation.4
+11:00 PM 2/4/2019 a-bicycle-walking.90m  f-water-zeph-big f-cereal.toastedoats.pux d-vitC-1g  e-constipation.4
 12:16 AM 2/5/2019 f-sub-pux-1/2  
  1:11 AM 2/5/2019 e-diahreah.2 s-headache.3 s-eyeshurt.4 s-rocking.1
 
@@ -1321,7 +1321,7 @@ five.to.five.is.twelve.hours s-e-out
  5:19 PM 2/5/2019 a-daydreaming.30m.more.violence
  7:00 PM 2/5/2019 f-sub-pux-1/2 7:31 PM 2/5/2019 a-gym.20m.fun 
  8:42 PM 2/5/2019 20;4SET 70VR 16vzl 110vzs 
- 9:24 PM 2/5/2019 35;2m19lc 45;1m5x3dm 16-12-16
+ 9:24 PM 2/5/2019 35;2m19lc 45;1m5x3dm 16-12-16sc
  1:30 AM 2/6/2019 f-chips.doritos f-pizza.cold where-house
  2:30 AM 2/6/2019 a-wank.2h s-dizzy.1 overeating.doritos.pizza.very.salty.school.diet.very.unhealthy
  
@@ -1507,7 +1507,7 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
  9:02 PM 2/17/2019 a-swings
  9:50 PM 2/17/2019 s-e-in
  9:56 PM 2/17/2019 # terrible grammer when writing stack exchange questions came back today as well
-10:00 PM 2/17/2019 s-stomach-ache.3 vitC-1g
+10:00 PM 2/17/2019 s-stomach-ache.3 d-vitC-1g
 11:25 PM 2/17/2019 a-rocking.30m 
 12:08 AM 2/18/2019 s-daydream.crazily.3
 
@@ -1679,7 +1679,7 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
  4:34 PM 3/2/2019 a-internethypnotized.30m
  6:37 PM 3/2/2019 a-internethypnotized.90m f-water-pux-big f-cereal.frostminiwheats.kell s-e-phon
  7:42 PM 3/2/2019 a-AMV.15m 
-10:11 PM 3/2/2019 a-excersise.bicycle.1h f-water-pux-big f-cereal.frostminiwheats.kell
+10:11 PM 3/2/2019 a-bicycle.1h f-water-pux-big f-cereal.frostminiwheats.kell
 12:05 AM 3/3/2019 s-e-in 40;1m20lc 19-17-16sc 
 # about 3 hours of productive work while eveyrthing else was just daily maintenance and time waste
 
@@ -1713,12 +1713,83 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
  5:10 PM 3/6/2019 s-sleep.3h.whatthefuckwasinthefoodagaindad
  6:44 PM 3/6/2019 f-sub-pux-1/2
  8:00 PM 3/6/2019 computer-acerdesk 30;2SET 116VR 21vzl 165vzs
- 9:18 PM 3/6/2019  f-sub-pux-1/2
+ 9:18 PM 3/6/2019  f-sub-pux-1/2 where-house
  9:36 PM 3/6/2019 d-vitC-2g
+12:06 AM 3/7/2019 f-tomato
+ 1:36 AM 3/7/2019 a-wank.2h f-potato
+ 1:59 AM 3/7/2019 a-rockingchair.15m
+ 3:34 AM 3/7/2019 a-rockingchair.20m s-e-out #yes I took out my earplugs
 
+12:04 PM 3/7/2019 a-wank.1h 
+ 1:04 PM 3/7/2019 a-rocking.1h.bed
+ 2:04 PM 3/7/2019 a-wank.1h f-cookies-chch.mo f-blueberries.mo
+ 3:12 PM 3/7/2019 f-chocolate.mo
+ 5:12 PM 3/7/2019 a-cora.1hr
+ 5:52 PM 3/7/2019 f-sub-pux-1/2 f-taco.bell.2
+ 6:05 PM 3/7/2019 a-drive.18m.other d-vitC-2g
+11:10 PM 3/7/2019 a-boardgames.5h f-sub-pux-1/2
+ 5:10 AM 3/7/2019 a-wank.2h s-e-in
+ 
+12:31 PM 3/8/2019 s-sleep-mediumpillow
+ 2:31 PM 3/8/2019 a-wank.2h f-cookies-chch.mo
+ 4:20 PM 3/8/2019 a-internethypnotized.1h
+ 5:18 PM 3/8/2019 f-deli-beef.mo 
+ 7:17 PM 3/8/2019 # I was recently counting headache wrong. it was always one for the past 4 days and 2-3 NOW today will give it a 3 caused by high pillow
+12:03 AM 3/9/2019 where-ddporch computer-notbook 30;1SET 95VR 19vzl 115vzs d-vitC-2g f-water-pux-big f-cereal.strawoats.pux
+12:39 AM 3/9/2019 40;1m20lc 20-22-13sc # just memory of being yelled at in bus is giving me bad daydream mini trauma
+
+11:35 AM 3/9/2019 s-sleep-lowpillow-very s-sleep-overheat s-sleep-back.headache.added
+12:15 PM 3/9/2019 f-water-pux-big f-cereal.strawoats.pux # I do not want to think deeply or concentrate is this a consequence of cereal or sleep and wank ?
+ 1:13 PM 3/9/2019 a-rockingchair.25m.headache.caused.by.rocking
+ 4:51 PM 3/9/2019 f-water-pux-big f-cereal.strawoats.pux f-tortilla.labanderita
+ 7:54 PM 3/9/2019 f-taco.bell.3 #do not buy meat products at bell
+ 8:13 PM 3/9/2019 s-e-out 
+ 9:11 PM 3/9/2019 computer-acerdesk 36;2SET 195VR 19vzl 166vzs
+10:07 PM 3/10/2019 a-rockingchair.20m f-scraps.dd
+12:07 AM 3/10/2019 a-rockingchair.20m f-apple.envy.pux.2
+ 1:14 AM 3/10/2019 f-apple.envy.pux
 
  
+11:39 PM 3/10/2019 s-sleep-lowpillow a-wank.30m 
+11:50 PM 3/10/2019 a-rocking.15m
+ 2:31 PM 3/10/2019 f-apple.2 
+ 4:07 PM 3/10/2019 a-wank.1h f-cheese.dd
+ 5:18 PM 3/10/2019 f-water-pux-big f-cereal.strawoats.pux s-e-out
+ 7:03 PM 3/10/2019 a-tennis.35m
+ 8:00 PM 3/10/2019 f-taco.bell.2
+ 8:37 PM 3/10/2019 a-rockinglaying.36m
+10:38 PM 3/10/2019 # I think rocking and tennis and looking up and neck streching makes dizzy headache neckache spineache worse
+10:51 PM 3/10/2019 f-macaroni
+11:11 PM 3/10/2019 20;2SET 162VR 156vzs 16vzl 
+11:22 PM 3/10/2019 30;1m20lc
 
+ 1:26 PM 3/11/2019 a-internethypnotized.30m
+ 4:22 PM 3/11/2019 114hbp 77lbp 81pulse s-e-out
+ 5:41 PM 3/11/2019 a-internethypnotized.25m
+ 5:54 PM 3/11/2019 87VR 19vzl 184vzs
+ 6:54 PM 3/11/2019 f-burg-mcd.2
+ 7:43 PM 3/11/2019 a-AMV.23m
+ 8:05 PM 3/11/2019 a-bicycle.1h
+11:17 PM 3/11/2019 f-spageti.ronzoni.organic.4 f-cottagecheese.pux.4percent.2
+11:30 PM 3/11/2019 131VR 19vzl 190vzs 12;2SET 35;1m20lc
+ 
+10:18 AM 3/12/2019 s-sleep.verylowpillow
+12:24 PM 3/12/2019 s-e-out
+ 6:00 PM 3/12/2019 a-wank.90m
+ 7:27 PM 3/12/2019 a-laydown.75m f-sub-pux-1/2
+ 9:04 PM 3/12/2019 a-bicycle.90m a-internethypnotized.45m
+10:34 PM 3/12/2019 a-AMV.1h where-ddhouse
+11:35 PM 3/12/2019 a-rockingchair.25m 
+ 1:35 AM 3/12/2019 s-e-out
+
+ 9:00 AM 3/13/2019 s-sleep.veryverylowpillow s-e-in
+11:30 AM 3/13/2019 s-sleep.highpillow
+ 1:30 PM 3/13/2019 a-layaround.1h
+ 3:42 PM 3/13/2019 a-internethypnotized.90m f-foj.5 f-scraps.dd
+ 5:11 PM 3/13/2019 a-wank.1h a-layaround.1h
+ 8:00 PM 3/13/2019 f-burg-mcd.2 f-water-pux-big f-cereal.almondoats.pux
+ 9:19 PM 3/13/2019 11SET 17vzl 118vzs
+ 
 # finish algos for 
 # maybe 
 # notes will now be entereable in the same way as comments in code (preceded by #) old periods between each word still works but its a pain
@@ -1728,5 +1799,4 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
 # what is do important so high up?
   
 # why does np++ always jump to lines higher up?
- 
  

@@ -48,18 +48,34 @@ output.dt <- rbindlist(list(output.dt,recombined)
 output.dt <- output.dt[order(output.dt$time)]
 return(output.dt)
 } 
- 
-WordCounts <- function(extranotes = extranotes){
+
+ require(data.table)
+WordCounts <- function(extranotes = extranotes, percent.of.string = T){
 forwordcount <- vector(mode = "character")
 for (itr in c(1:30)) {
   forwordcount <- append(forwordcount, word(extranotes$event, itr, sep = fixed('.')))
 }
+if(!percent.of.string){
 forwordcount <- forwordcount[!is.na(forwordcount)]
 forwordcount <- forwordcount[forwordcount != ""]
 forwordcount <- forwordcount[!(forwordcount %in% c("0","1","2","3","4","5","6","7","8","9"))]
 wat <- (table(forwordcount))
 return(wat[order(-wat)])
 }
+events.count <- length(extranotes$event)
+relatv.wordcount <- data.table(forwordcount, 1:events.count)
+relatv.wordcount <- relatv.wordcount[!is.na(forwordcount)]
+relatv.wordcount <- relatv.wordcount[forwordcount != ""]
+relatv.wordcount <- relatv.wordcount[!(forwordcount %in% c("0","1","2","3","4","5","6","7","8","9"))]
+relatv.wordcount[,relatv:=.N, by=V2]
+relatv.wordcount[,relatv:=1/relatv]
+relatv.wordcount[,count:=round(sum(relatv), digits = 2), by=forwordcount]
+outit <- relatv.wordcount[, .SD[1], by=forwordcount] 
+outit <- outit[,.(forwordcount,count)]
+return(outit[order(-count)])
+}
+ 
 
 # create vector of word or character counts in each string and glue it to un-de-NAed wordcount vector to create datatable
 # then undecided data table manip to make some kind of importance score
+

@@ -9,7 +9,7 @@ for(itr in 1:length(dt.time.loc.event$event)){
   }
 }
 
-#library(ggraptR)
+#require(ggraptR)
 #ggraptR()
 
 #### Food ####
@@ -307,3 +307,46 @@ ggplot(dt.state, aes(x = time, weights = state1cImpact)) + geom_density(adjust =
 dev.off()
 # + expand_limits(x = c(first.day, last.day)) 
 
+#### dt recombine #####
+
+require(data.table)
+require(ggplot2)
+# update dt.time.loc.event to current standards
+dt.test <- dt.time.loc.event[!is.na(istest)][checksum>7]
+columns.after <- which(names(dt.test)=="checksum") -1
+columns.before <- which(names(dt.test)=="istest") +1 
+dt.temporary <- dt.test[, (((columns.after:columns.before))),with=FALSE]
+dt.test$test1cQuant <- apply(dt.temporary,1, min, na.rm=TRUE)
+# m19lc and m20lc should merge 
+
+# dt.state dt.drug dt.food dt.act
+# label datapoints by type
+# create a single "impact" for all
+# are these events of interest as cause or effect
+# combine the datasets 
+
+dt.test[,category:="test"]; dt.state[,category:="state"];dt.food[,category:="food"];dt.drug[,category:="drug"];dt.act[,category:="act"];
+dt.test[,first_level_of_event:=istest];dt.state[,first_level_of_event:=state1c];dt.food[,first_level_of_event:=food1c];dt.drug[,first_level_of_event:=drug1c];dt.act[,first_level_of_event:=act1c];
+dt.test[,impact:=test1cQuant];dt.state[,impact:=state1cImpact];dt.food[,impact:=food1cQuant];dt.drug[,impact:=1];dt.act[,impact:=act1cQuant];
+
+bad.activites<-c("a-internethypnotized", "a-wank", "a-rockingchair", "a-daydreaming","a-AMV") 
+bad.state<-c(  "s-fart"     ,   "s-dizzy"     ,    "s-headache" ,   "s-nauseous"  ,  "s-eyeshurt" ,  
+               "s-rocking" ,    "s-sleep"   ,    "s-daydreaming" ,    "s-stomach"  ,    
+               "s-compulsion" , "s-lung"  ) #unique(dt.state$state1c)
+good.state<-c("s-excited","s-energetic")
+dt.test[,cause:=FALSE];dt.state[,cause:=TRUE];dt.food[,cause:=TRUE];dt.drug[,cause:=TRUE];dt.act[,cause:=TRUE];
+dt.test[,Effect_of_interest:= TRUE];dt.state[,Effect_of_interest:=F];dt.food[,Effect_of_interest:=FALSE];dt.drug[,Effect_of_interest:=FALSE];
+dt.act[,Effect_of_interest:= F] #first_level_of_event %in% bad.activites];
+
+#dt.recombined<-dt.test[, .(inears,location.long,location,location.short,time,event,first_level_of_event,impact,category,Effect_of_interest,cause)] 
+dt.recombined<-rbindlist(list(dt.test[, .(inears,location.long,location,location.short,time,event,first_level_of_event,impact,category,Effect_of_interest,cause)],
+                              dt.state[, .(inears,location.long,location,location.short,time,event,first_level_of_event,impact,category,Effect_of_interest,cause)],
+                              dt.act[, .(inears,location.long,location,location.short,time,event,first_level_of_event,impact,category,Effect_of_interest,cause)],
+                              dt.drug[, .(inears,location.long,location,location.short,time,event,first_level_of_event,impact,category,Effect_of_interest,cause)],
+                              dt.food[, .(inears,location.long,location,location.short,time,event,first_level_of_event,impact,category,Effect_of_interest,cause)]
+), use.names=TRUE, fill=FALSE, idcol=TRUE)
+summary(dt.recombined)
+dt.recombined<-dt.recombined[order(time)]
+dt.recombined$impact <- as.numeric(dt.recombined$impact)
+dt.recombined[,orgquant:=NA]
+dt.recombined$orgquant[dt.recombined$category == "state"] <- as.numeric(dt.state$state1cQuant) #length(dt.state$state1cQuant);length(dt.recombined$orgquant[dt.recombined$category == "state"])

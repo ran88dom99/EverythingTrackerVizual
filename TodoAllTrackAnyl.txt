@@ -22,6 +22,9 @@ Tracker Journal Report
   get miband data out then 
 try out the competitors/coworkers 
    
+diary.txt must be in correct order otherwise where-ear- etc statuses do not line up right
+   or fix this bug
+   
 Github has many of these resources. Start there.
 PLATFORM FOR RARE EVENTS DETECTION AND TIME CORRELATION ETC POSSIBLY AI WORK
  IF NO COMPETITOR HAS SIMILAR ALGORITHM

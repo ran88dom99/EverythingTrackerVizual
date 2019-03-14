@@ -1,0 +1,40 @@
+---
+title: "cleanup txt input by hand "
+output: html_notebook
+---
+
+## cleanup txt input by hand 
+
+```{r}
+#### tables of counts of first and second levels of events including rares ####
+tab.reclev<-table(dt.recombined$first_level_of_event )
+tab.reclev[order(-tab.reclev)]
+```
+```{r}
+#### all strings considered notes (unparseable) ####
+dt.missedstring[,.(time,event)]
+dt.missedstring[,.(time,event)][-c(1:990)]
+```
+```{r}
+#### anything fell through the cracks #### 
+#after chopping get uniques then remove all "event" in either missed or recombined
+detected <-unique(union(unique(dt.missedstring$event),unique(dt.recombined$event)))
+this.errors<-setdiff(unique(tripple.check$event),detected) 
+not.errors<-c("s-e-","where-","computer-"); not.errors.sum<-vector(length = length(this.errors))
+for(itr in not.errors){
+not.errors.sum <- not.errors.sum + str_detect(this.errors,itr)}
+this.errors[not.errors.sum==0]
+```
+```{r}
+#### string notes mentioning particular word (event) ####
+extranotes<-NotesExtract("s-headache", missed.strings =  dt.missedstring, recombined =  dt.recombined)
+extranotes[,.(time,event)]#
+#extranotes<-NotesExtract("s-headache", missed.strings =  NA, recombined =  dt.recombined)
+wcounts<-WordCounts(extranotes)
+wcounts
+```
+
+
+
+
+ 

@@ -156,7 +156,7 @@ ZoomBandWid<-function(dif.fq,perc.trim=.05,graphplot=F){
   }
 #summary(as.vector(x2));summary(as.vector(y2))
 
-  library("hdrcde")
+  require("hdrcde")
   if(graphplot==F){
   hdr.x<-hdr(x2, prob = c(((1-perc.trim)*100),99,90,50,75))}
   if(graphplot==T) {
@@ -241,7 +241,7 @@ if(F){cols_tosee<-c("mean_user_rating","sd_user_rating","simplskew_user_rating",
   y <- get("simplskew_user_rating",usrs_stats)#mean_user_ratingget(,usrs_stats)"skew_user_rating" user_90th_quant_popular_rank
   x <- diamonds$cut
   y <- diamonds$color
-  source("runfirst.R"); library(MASS); library(dplyr); library(ggplot2)
+  source("runfirst.R"); require(MASS); require(dplyr); require(ggplot2)
   xlab="x"; ylab="y"; eff.thrs.stp=.001; perc.windw=.1;rm.xs.fct=T;perc.lcl=F;autzoom.plot="yes";detail=200
   ExpectVS_ActDensityRainbow(x,y, eff.thrs.stp=.001)
 
@@ -250,7 +250,7 @@ if(F){cols_tosee<-c("mean_user_rating","sd_user_rating","simplskew_user_rating",
 
 
 ExpectVS_ActDensityRainbow <- function(x,y,xlab="x", ylab="y", eff.thrs.stp=.01, perc.windw=.1,rm.xs.fct=T,perc.lcl=F,autzoom.plot="yes",detail=200){
-  print(paste(xlab,ylab)); library(reshape2)
+  print(paste(xlab,ylab)); require(reshape2)
   if(!(autzoom.plot %in% c("both","no","yes"))) {stop("autzoom.plot not acceptable")}
   if(!is.vector(x) && !is.factor(x)) {stop("x not vector or factor")}
   if(is.vector(x)) {x.is.categorical<<-F}
