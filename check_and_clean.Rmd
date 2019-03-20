@@ -20,10 +20,11 @@ dt.missedstring[,.(time,event)][-c(1:990)]
 #after chopping get uniques then remove all "event" in either missed or recombined
 detected <-unique(union(unique(dt.missedstring$event),unique(dt.recombined$event)))
 this.errors<-setdiff(unique(tripple.check$event),detected) 
-not.errors<-c("s-e-","where-","computer-"); not.errors.sum<-vector(length = length(this.errors))
+not.errors<-c("s-e-","where-","computer-","f-"); not.errors.sum<-vector(length = length(this.errors))
 for(itr in not.errors){
 not.errors.sum <- not.errors.sum + str_detect(this.errors,itr)}
-this.errors[not.errors.sum==0]
+this.errors<-this.errors[not.errors.sum==0]
+this.errors[order(this.errors)]
 ```
 ```{r}
 #### string notes mentioning particular word (event) ####

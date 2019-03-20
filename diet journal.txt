@@ -1357,7 +1357,7 @@ five.to.five.is.twelve.hours s-e-out
 10:35 AM 2/8/2019 a-wank.1h s-eyeshurt.5 s-headache.2 still_can_not_sleep.on_stomach_face_front
 12:00 PM 2/8/2019 s-e-phon
  1:29 PM 2/8/2019 51VR 18vzl 154vzs 45;2m20lc 3m20lc 
- 3:19 PM 2/8/2019 mri_done_very_scary_but_painless s-dizzy.3.10m f-coffee.frenchvanilla
+ 3:19 PM 2/8/2019 #mri_done_very_scary_but_painless s-dizzy.3.10m f-coffee.frenchvanilla
  3:23 PM 2/8/2019 61VR  17vzl 187vzs s-e-in 4m20lc 13-22-18sc f-coffee.frenchvanilla
  4:07 PM 2/8/2019 f-chocolate_hot f-water
  5:23 PM 2/8/2019 e-poopstrainheadblood e-constipation.1 
@@ -1419,7 +1419,7 @@ five.to.five.is.twelve.hours s-e-out
  3:22 PM 2/12/2019 out.of.sadness not.completely.still.wallowing
  5:50 PM 2/12/2019 oh.the.many.stupid.ways.I.messedup oh.the.possible.conspiracy.theories 
 10:13 PM 2/12/2019 f-sub-pux f-water.pux.med s-headache.4
-10:40 PM 2/12/2019 a-AMV.20m s-dizzy.2 where-ddhouse
+10:40 PM 2/12/2019 a-AMV.20m s-dizzy.2 where-ddhouse where-long-2palms
 11:36 PM 2/12/2019 21;5SET 55VR 19vzl 130vzs 
  1:31 AM 2/13/2019 a-wank.1h 1:52 AM 2/13/2019 f-cereal.branflakes f-water-zeph-big
  2:00 AM 2/13/2019 15;2m20lc 10-12-12sc
@@ -1789,6 +1789,65 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
  5:11 PM 3/13/2019 a-wank.1h a-layaround.1h
  8:00 PM 3/13/2019 f-burg-mcd.2 f-water-pux-big f-cereal.almondoats.pux
  9:19 PM 3/13/2019 11SET 17vzl 118vzs
+11:00 PM 3/13/2019 f-burg-mcd.2 f-water-pux-big f-cereal.almondoats.pux
+
+10:20 AM 3/14/2019 s-sleep-lowpillow
+11:45 AM 3/14/2019 a-wank.85m
+12:11 PM 3/14/2019 a-rockingchair.26m
+12:20 PM 3/14/2019 f-water-pux-big f-cereal.almondoats.pux
+ 2:45 PM 3/14/2019 a-internethypnotized.30m
+ 5:00 PM 3/14/2019 a-cora
+11:58 PM 3/14/2019 d-vitC-2g
+ 1:05 AM 3/15/2019 3SET 126VR 120vzs 18vzl
+ 2:33 AM 3/15/2019 a-internethypnotized.90m
+ 
+10:19 AM 3/15/2019 s-sleep-verylowpillow
+ 1:39 PM 3/15/2019 a-wank.30m
+ 4:08 PM 3/15/2019 a-drive.30m
+ 5:22 PM 3/15/2019 a-rockingchair.10m
+ 5:42 PM 3/15/2019 f-water-pux-med f-bread-toufya
+
+10:35 AM 3/16/2019 s-sleep-lowpillow-very
+10:35 AM 3/16/2019 a-wank.25m
+ 1:15 PM 3/16/2019 a-sleep.nopillow.outside
+ 5:03 PM 3/16/2019 a-internethypnotized.180m
+ 
+10:20 AM 3/17/2019 s-sleep-lowpillow
+11:20 AM 3/17/2019 a-sleep.1h
+12:21 PM 3/17/2019 f-clifbar.1/2
+ 1:21 PM 3/17/2019 a-internethypnotized.1h s-e-out
+ 2:54 PM 3/17/2019 a-wank.30m
+ 4:02 PM 3/17/2019 f-foj.6
+ 4:22 PM 3/17/2019 a-daydreaming.20m.toilet
+ 9:15 PM 3/17/2019 f-potatoes.steam.pux.red f-sauce.bell
+
+10:22 AM 3/18/2019 s-sleep.lowpillow
+11:32 AM 3/18/2019 a-wank.1h
+ 1:03 PM 3/18/2019 30;3SET
+ 2:02 PM 3/18/2019 30;4m19lc 17-21-22sc
+ 5:01 PM 3/18/2019 f-foj.7
+ 9:50 PM 3/18/2019 f-cheassecake.mo.1/2
+ #father returned
+10:00 PM 3/18/2019 a-bicycle.90m
+ 1:03 AM 3/19/2019 a-rockingchair.15m f-potatoes.steam.pux.red where-ddporch
+
+
+ 11:25 AM 3/19/2019 s-sleep-lowpillow.side
+ 1:25 PM 3/19/2019 f-clifbar.1/2
+ 2:25 PM 3/19/2019 a-wank.3h
+ 3:26 PM 3/19/2019 f-spageti.dd
+ 4:44 PM 3/19/2019 3SET 264VR 17vzl 188vzs
+ 5:54 PM 3/19/2019 40;1m20lc
+ 7:16 PM 3/19/2019 # constant rewriting of memories for emotional impact; crazy and distracting from work
+ 8:24 PM 3/19/2019 f-burg-mcd.2
+ 8:44 PM 3/19/2019 a-drive.20m.concentratework
+ 8:53 PM 3/19/2019 f-ricepudding.senorico.pux
+ 8:55 PM 3/19/2019 d-tea.mo
+ 11:49 PM 3/19/2019 a-bicycle.1h
+ 2:28 AM 3/20/2019 a-wank.1h f-salmon.dd
+ 
+ 11:03 AM 3/20/2019 s-sleep-lowpillow.mildcontorted
+ # Woke up to memories of possible ways I died post 14 years.
  
 # finish algos for 
 # maybe 
@@ -1799,4 +1858,5 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
 # what is do important so high up?
   
 # why does np++ always jump to lines higher up?
- 
+# cora recommends bal under arch to forece pusshing in stomach 
+# and each direction excesises  side to senter then same side also while sitting with balll at back just to the first pain look at distant vista for eyes excersise

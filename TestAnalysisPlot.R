@@ -182,10 +182,10 @@ dt.time.loc.event$event[str_detect(dt.time.loc.event$event,"[1234567890]-[123456
 
 
 cbound.test$checksum<-apply(cbound.test,1,function(x) sum(!is.na(x)))
-print(dt.time.loc.event[dt.time.loc.event$checksum==9]$event)
-if(length(dt.time.loc.event[dt.time.loc.event$checksum==10]$event)>0) stop("3 test columns recieved marks from one event")
-if(length(dt.time.loc.event[dt.time.loc.event$checksum==5]$event)>0) stop("fewer than 5 columns filled in test dataset")
-print(dt.time.loc.event[dt.time.loc.event$checksum==7]$event)
+print(dt.time.loc.event[dt.time.loc.event$checksum==10]$event)
+if(length(dt.time.loc.event[dt.time.loc.event$checksum==11]$event)>0) stop("3 test columns recieved marks from one event")
+if(length(dt.time.loc.event[dt.time.loc.event$checksum==6]$event)>0) stop("fewer than 5 columns filled in test dataset")
+print(dt.time.loc.event[dt.time.loc.event$checksum==8]$event)
 inspect.bad.checksum<-dt.time.loc.event[dt.time.loc.event$checksum==7]
 dt.time.loc.event[,m20lc:=NULL]
 dt.time.loc.event[,m19lc:=NULL]

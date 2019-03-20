@@ -187,3 +187,106 @@ ManyTimeSerise <- function(data, zoom_bounds = c(20,9999),  name="basic_graph", 
 }
 #+theme(strip.text.y = element_text(size = 6))
 
+ManyTimeLines <- function(dtaa, zoom_bounds = c(20,9999),  name="basic_graph", points_scaled_per_facet=F, density_adjust=1/8, pointNlargeConst=7, pointNlargeConstPrint=1.5, facets_per_page=6, point_size=6){
+  # Multiple time series of multiple types 
+  # lots of addons and configurations
+  # zoom_bounds vector of how many days back each plot should be.
+  # pointNlargeConst inversly changes dots per inch. 
+  # density_adjust increases width of density window. 
+  # points_scaled_per_facet should each facet point be scaled based on other points of this facet or all points? 
+  # facets_per_page, number of facets per page (should be a constant later) given size_of_tests modifies size_of_points & size_of_texts. clibrated at 6 facets and pnl=7 and pnlprint=1.5
+  
+  # remove y axis label per line thing
+  # or different scales per facet 
+  # and different scale lables too
+  
+  # bigger crosses to work as barcode?
+  # SMALLER crosses BECAUSE THESE OVERLAP?
+  
+  # size as duration, height as degree for symptoms
+  
+  # multiple types with more detail as more detail included in type
+  # color useful
+  # also heirarchy of info
+  
+  mox <- max(dtaa$impact)
+  moxw <- mox
+  maxtime <- max(dtaa$time)
+  mintime <- min(dtaa$time)
+  
+  if(points_scaled_per_facet){
+    dtaa[,min_f_lv:=min(impact), by=first_level_of_event]
+    dtaa[,max_f_lv:=max(impact), by=first_level_of_event]
+    dtaa[,impact:= (impact/max_f_lv), by=first_level_of_event]
+    mox=1
+    moxw <- "varies"
+  }
+  
+  first_levels_count <- length(unique(dtaa$first_level_of_event))
+  print(first_levels_count)
+  
+  #itr<-20
+  for(itr in zoom_bounds){
+    if(itr > maxtime) itr = maxtime
+    if(itr > (maxtime - mintime)) itr = (maxtime - mintime)
+    
+    print( 
+      ggplot(dtaa, aes(x=time)) + 
+        # geom_point(aes(y=impact/mox),  stat="identity", position="identity", alpha=0.8, size=point_size, shape=3) + 
+        #geom_density(aes(y=(..scaled.. ),  weights =  impact ), stat="density",  position="identity", alpha=0.5, adjust = density_adjust) + 
+        geom_point(aes(y=impact/mox),  stat="identity", position=position_jitter(width = 0.03, height = 0.03),  alpha=0.8, size=.1, color="red" ) +
+        geom_line(aes(y=impact/mox),color="blue", alpha=0.3)+
+        geom_line(aes(y=rollmean(impact/mox, 10, na.pad=TRUE))) +
+        facet_grid(first_level_of_event ~ .) + theme_grey() +
+        theme(text=element_text(family="sans", face="plain", color="#000000",  size=15, hjust=0.5, vjust=0.5)) + 
+        xlab("time") + ylab(paste0("scaled density and impact max: ",moxw)) + 
+        xlim(maxtime - itr, maxtime) + theme(strip.text.y = element_text(size = 9)) 
+    )
+ 
+    
+    facets_per_page <- first_levels_count / facets_per_page
+    #pointNlargeConst <- pointNlargeConst / facets_per_page
+    #pointNlargeConstPrint <- pointNlargeConstPrint / facets_per_page
+    
+    ggsave(paste0("output/nontest/",name,round(itr),".png"), width = 1366/pointNlargeConst, height = 768/pointNlargeConst , units = "mm", limitsize = FALSE) 
+    
+    ggplot(dtaa, aes(x=time)) + 
+      #geom_point(aes(y=impact/mox),  stat="identity", position="identity", alpha=0.8, size=point_size, shape=3) + 
+      #geom_density(aes(y=(..scaled.. ), weights = impact), stat="density",  position="identity", alpha=0.5, adjust = density_adjust) + 
+      geom_line(color="blue", alpha=0.3)+
+      geom_line(aes(y=rollmean(get(col_name2,usrs_stats_nonas), 10, na.pad=TRUE))) +
+      geom_point(aes(y=impact/mox),  stat="identity", position=position_jitter(width = 0.03, height = 0.03),  alpha=0.8, size=.1, color="red" ) +
+      facet_grid(first_level_of_event ~ .) + theme_grey() +
+      theme(text=element_text(family="sans", face="plain", color="#000000",  size=15, hjust=0.5, vjust=0.5)) + 
+      xlab("time") + ylab(paste0("scaled density and impact max: ",moxw)) + 
+      xlim(maxtime - itr, maxtime) + theme(strip.text.y = element_text(size = 9)) 
+    
+    screenrat <- 1366/768
+    screenrat2 <- 8.5/11
+    howmuchmoreheightisavailableatprinting <- screenrat/screenrat2
+    letsreverse <- 11/8.5
+    howmuchmoreheightisavailableatprintingrverse <- screenrat/letsreverse
+    
+    #* (first_levels_count/facets_per_page)
+    ggsave(paste0("output/nontest/print/print_",name,round(itr),".png"), width =  8.5/pointNlargeConstPrint, height = (11/pointNlargeConstPrint)  , units = "in",limitsize = FALSE)  
+    
+    ggsave(paste0("output/nontest/print/print_side_",name,round(itr),".png"), width =  (11/pointNlargeConstPrint) , height = (8.5/pointNlargeConstPrint)  , units = "in",limitsize = FALSE)  
+    #    If you're in the United States or Canada, standard printer paper dimensions for most documents is that of the standard letter paper size, which is 8.5 inches by 11 inches. In much of the rest of the world, it is A4, which is 297 millimeters by 210 millimeters.  
+    
+    
+    #* first_levels_count
+    #      png(filename = paste0(name,round(itr),"p.png"), width = 1366/itemNlargeConst,    height = 768/itemNlargeConst)
+    #      ggplot(dtaa, aes(x=time)) + 
+    #  geom_point(aes(y=impact/mox),  stat="identity", position="identity", alpha=0.8, size=6, shape=3) + 
+    #  geom_density(aes(y=(..scaled.. ),  weights =  impact ), stat="density",  position="identity", alpha=0.5, adjust = density_adjust) + 
+    #  geom_point(aes(y=impact/mox),  stat="identity", position=position_jitter(width = 0.03, height = 0.03),  alpha=0.8, size=.1, color="red" ) +
+    # facet_grid(first_level_of_event ~ .) + theme_grey() +
+    # theme(text=element_text(family="sans", face="plain", color="#000000",  size=15, hjust=0.5, vjust=0.5)) + 
+    # xlab("time") + ylab(paste0("scaled density and impact max: ",moxw)) + 
+    # xlim(maxtime - itr, maxtime) + theme(strip.text.y = element_text(size = 9)) 
+    
+    #      dev.off()
+    
+  }
+}
+ 
