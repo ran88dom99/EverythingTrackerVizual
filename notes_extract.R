@@ -8,7 +8,7 @@ NotesExtract <- function(event_type="s-headache", missed.strings=dt.missedstring
 #if usr do not want both data objects use NA for the one usr do not want.  
 
 
-if(!is.na(recombined)){
+if(any(!is.na(recombined))){
 # for every extra of type-name added as connected note
 recombined <- recombined[first_level_of_event == event_type] 
 recombined[,org.event:=event]
@@ -21,7 +21,7 @@ recombined <- recombined[,.(inears,location.long,location,location.short,time,ev
 output.dt <- recombined
 }
 
-if(!is.na(missed.strings)){
+if(any(!is.na(missed.strings))){
 output.dt <- missed.strings[1]
 event_type <- str_replace(event_type,".+-","")
 # for every . connected chunk in dt.missedstring itr<-2
@@ -37,7 +37,7 @@ output.dt$time <- round(as.numeric(output.dt$time), digits = 4)
 #str(output.dt);str(recombined)
 output.dt <- output.dt[-1]
 
-if(!is.na(recombined)){
+if(any(!is.na(recombined))){
   #combine and sort recombine and output.dt
 output.dt <- rbindlist(list(output.dt,recombined)
                      , use.names=T, fill=T, idcol=T)
@@ -50,8 +50,9 @@ return(output.dt)
 } 
 
  require(data.table)
-WordCounts <- function(extranotes = extranotes, percent.of.string = T){
+WordCounts <- function(extranotes = extranotes, percent.of.string = T, nameed = "headache") {
 forwordcount <- vector(mode = "character")
+lcount <- length(extranotes$time)
 for (itr in c(1:30)) {
   forwordcount <- append(forwordcount, word(extranotes$event, itr, sep = fixed('.')))
 }
@@ -72,7 +73,13 @@ relatv.wordcount[,relatv:=1/relatv]
 relatv.wordcount[,count:=round(sum(relatv), digits = 2), by=forwordcount]
 outit <- relatv.wordcount[, .SD[1], by=forwordcount] 
 outit <- outit[,.(forwordcount,count)]
-return(outit[order(-count)])
+
+outittoper <-  data.table(
+  forwordcount = nameed,
+  count = lcount
+)
+l = list(outittoper,outit[order(-count)])
+return( rbindlist(l, use.names=TRUE))
 }
  
 

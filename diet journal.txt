@@ -1823,7 +1823,7 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
 
 10:22 AM 3/18/2019 s-sleep.lowpillow
 11:32 AM 3/18/2019 a-wank.1h
- 1:03 PM 3/18/2019 30;3SET
+ 1:03 PM 3/18/2019  computer-acerdesk  30;3SET
  2:02 PM 3/18/2019 30;4m19lc 17-21-22sc
  5:01 PM 3/18/2019 f-foj.7
  9:50 PM 3/18/2019 f-cheassecake.mo.1/2
@@ -1836,7 +1836,7 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
  1:25 PM 3/19/2019 f-clifbar.1/2
  2:25 PM 3/19/2019 a-wank.3h
  3:26 PM 3/19/2019 f-spageti.dd
- 4:44 PM 3/19/2019 3SET 264VR 17vzl 188vzs
+ 4:44 PM 3/19/2019  computer-acerdesk  3SET 264VR 17vzl 188vzs
  5:54 PM 3/19/2019 40;1m20lc
  7:16 PM 3/19/2019 # constant rewriting of memories for emotional impact; crazy and distracting from work
  8:24 PM 3/19/2019 f-burg-mcd.2
@@ -1847,7 +1847,22 @@ in.house.especially.during.high.temperatures.and.with.closed.windows.air.dehydra
  2:28 AM 3/20/2019 a-wank.1h f-salmon.dd
  
  11:03 AM 3/20/2019 s-sleep-lowpillow.mildcontorted
- # Woke up to memories of possible ways I died post 14 years.
+ 1:00 PM 3/20/2019 f-foj.5
+ 1:44 PM 3/20/2019 f-salmon.dd s-e-phon
+ 3:30 PM 3/20/2019 computer-acerdesk 20;2SET 238VR 156vzs 19vzl
+ # Woke up to memories of possible ways I died. New memories are fire in very first years, poisoning in middleschool and that hit to the head from behind killed me. I write because of energy not that foj causes this
+ # omfg real foj nonstopping. It is actualy distruptive to certain kinds of work.
+ 9:06 PM 3/20/2019 # while lots of distractions lots of productive planning again and better coding today
+ 9:46 PM 3/20/2019 f-water-pux-med f-bread-toufya # possibly its the writing out on paper that helps program better that is design propperly
+ 
+ 
+ 7:40 AM 3/21/2019 s-sleep-lowpillow
+ 8:40 AM 3/21/2019 a-wank.1h
+ 10:57 AM 3/21/2019 a-rockingchair.20m
+ 11:51 AM 3/21/2019 f-clifbar-1/2
+ 2:41 PM 3/21/2019 a-bath.20m.pruney.dry.despite.boiled.water 
+ 4:32 PM 3/21/2019 a-drive.15m f-water-pux-med f-bagel-pux
+ 6:12 PM 3/21/2019 #did I pickle my brain?
  
 # finish algos for 
 # maybe 

@@ -165,7 +165,7 @@ first_posix_datetime<-parse_date_time("4:00AM9/19/2018", c("%I:%M p! %m %d %y") 
  
 #get all possible symptoms for symptom filling  
 allpossiblesymptoms<-mySymptoms[mySymptoms$V3==" Symptom",]
-allpossiblesymptoms<-(allpossiblesymptoms[,4:30])
+allpossiblesymptoms<-(allpossiblesymptoms[,4:length(allpossiblesymptoms)])
 dimsallposs<-dim(allpossiblesymptoms)
 allSyms<-c()
 for(itrc in 1:dimsallposs[2]){

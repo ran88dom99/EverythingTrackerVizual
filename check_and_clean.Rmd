@@ -2,7 +2,15 @@
 title: "cleanup txt input by hand "
 output: html_notebook
 ---
-
+```{r}
+summary(dt.recombined)
+ 
+table(dt.recombined$inears)
+table(dt.recombined$location.long)
+table(dt.recombined$location) 
+table(dt.recombined$first_level_of_event)
+table(dt.recombined$category)
+```
 ## cleanup txt input by hand 
 
 ```{r}

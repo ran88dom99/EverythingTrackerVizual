@@ -62,6 +62,7 @@ for (itr in 1:length(dt.food$food1cQuant)) {
 #setting to 1 must precede medianization
 #why not .0.5 instead of -.5 or .1/2
 
+if(F) { #dont need these things any more
 ggplot(dt.food, aes(x=time)) + geom_histogram(stat="bin", position="stack", alpha=1, bins=200) + geom_path(stat="bin", position="identity", linetype="dashed", bins=100, pad=TRUE) + facet_grid(food1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("count")
 ggplot(dt.food, aes(x=time)) + geom_histogram(stat="bin", position="stack", alpha=1, bins=1000) + facet_grid(food1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("count")
 ggplot(dt.food, aes(y=food1cQuant, x=time)) + geom_path(stat="identity", position="identity", alpha=0.5) + facet_grid(food1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + xlab("time") + ylab("food1cQuant")
@@ -80,7 +81,7 @@ png(filename = paste0("food_weighd_density.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
 ggplot(dt.food, aes(x = time, weights = food1cQuant)) + geom_density(adjust = 1/16) + facet_grid(food1c ~ .) 
 dev.off()
-
+}
 #### Drug ####
 dt.time.loc.event[,drug:=notest]
 dt.time.loc.event$drug[!str_detect(dt.time.loc.event$drug, "^d-")]<-NA
@@ -90,7 +91,8 @@ dt.drug[,drug1c:=as.character(str_extract_all( event,"^d-[\\p{Alphabetic}]{1,30}
 dt.drug[,f1c.count:=.N,by=drug1c]
 dt.drug<-dt.drug[f1c.count>4]
 
-  
+
+if(F) { #dont need these things any more
 png(filename = paste0("drug.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
 ggplot(dt.drug, aes(y=drug1c, x=time)) + 
@@ -105,7 +107,7 @@ png(filename = paste0("drug_weighd_density.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
 ggplot(dt.drug, aes(x = time, weights = 1)) + geom_density(adjust = 1/8) + facet_grid(drug1c ~ .) 
 dev.off()
-
+}
 #### Activity ####
 dt.time.loc.event[,act:=notest]
 dt.time.loc.event$act[!str_detect(dt.time.loc.event$act, "^a-")]<-NA
@@ -157,6 +159,8 @@ for (itr in 1:length(dt.act$act1cQuant)) {
 #setting to 1 must precede medianization? no?
 dt.act$act1cQuant<-as.numeric(dt.act$act1cQuant)
 
+
+if(F) { #dont need these things any more
 png(filename = paste0("actviolin.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
 ggplot(dt.act, aes(y=time, x=as.factor(act1c))) +
@@ -180,6 +184,7 @@ png(filename = paste0("act_weighd_density.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
 ggplot(dt.act, aes(x = time, weights = act1cQuant)) + geom_density(adjust = 1/8) + facet_grid(act1c ~ .) 
 dev.off()
+}
 
 maxtime<-max(dt.act$time)
 png(filename = paste0("act_weighd_density_recent.png"), width = 1366/itemNlargeConst,
@@ -198,6 +203,7 @@ DtSy[,s1c.count:=.N,by=St1c]
 DtSy <- DtSy[s1c.count>4]
 
 
+if(F) { #dont need these things any more
 png(filename = paste0("statusviolin.png"), width = 1366/itemNlargeConst,
     height = 768/itemNlargeConst)
 ggplot(DtSy, aes(y=time, x=as.factor(St1c))) +
@@ -216,7 +222,7 @@ ggplot(DtSy, aes(y=St1c, x=time)) +
   theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) +
   scale_size(range=c(1, 1)) + xlab("time") + ylab("f1c.count")
 dev.off()
-
+}
 ###### Status extract quantities #######
 DtSy[,St1cQuant:=NA]
 DtSy[,St1cQuant:=as.character(str_extract( event,"(?<=[.-])[/1234567890g.]{1,4}(($)|(?=[.-]))"))]
@@ -258,77 +264,107 @@ ggplot(DtSy, aes(y=St1cQuant, x=time)) + geom_point(stat="identity", position="i
 # if time-distance between the two points is higher than max bounds * 2
 
 
-# sinc eline graphing instead of density Duration no longer figures into degree calculation but I kept the code just incase
+# since line graphing instead of density Duration no longer figures into degree calculation but I kept the code just incase
 # ONLY FOR LINE GRAPH WE WILL IGNORE IT cause scatter + line is really good enough 
 # add time to this row's, subtract from other's add event of 0 with new times
-# WARNING ! BAD DESIGN MEANS INE GRAPH WILL LOOK LIKE DURATION BOUNDS NEVER RUN PAST OTHER EVENTS' TIMES
-# THEREFORE MENTIONING SHORT RUN INSIDE OTHERS WILL NOT PRODUCE  THE EXPECTED SPIKE IN A MOUNTAIN
-# ALSO LAZINESS MEANS INPUT DURATION WILL NOT EFFECT LINE GRAPH OUTSIDE OF WHERE 0 DUMMIES END
+#ALSO LAZINESS MEANS INPUT DURATION WILL NOT EFFECT LINE GRAPH OUTSIDE OF WHERE 0 DUMMIES END
+#AND IF A DROP SHOULD HAPPEN BECAUSE DURATIONS DO NOT OVERLAP BETWEEN TWO CONTIGUIUS SAMPLINGS 
+#       TESTS BUT NOT ENOUGH TO WARRANT ZERO DUMMY THERE WONT BE A ZERO DUMMY 
+#      ATM THIS HAPPENS IF 2 UNDURATIONED EVENTS ARE 24 HOURS APPART
+#   
 DtSy[,St1cStart:=NA]
 DtSy[,St1cEnd:=NA]
-DtSyT<-data.table()
+DtSy[,St1cChkStt:=NA]
+DtSy[,St1cChkEd:=NA]
+DtSyT <- data.table()
 
 #i<-333
 #should duration be calculated ahead of time?
 for (i in 1:length(DtSy$St1cDuration)) {
-  
   if(!is.na(DtSy$St1cDuration[i])){
+    DtSy$St1cChkStt[i] <- DtSy$time[i] - DtSy$St1cDuration[i] * hour.constant
+    DtSy$St1cChkEd[i] <- DtSy$time[i] + DtSy$St1cDuration[i] * hour.constant 
     DtSy$St1cStart[i] <- DtSy$time[i] - DtSy$St1cDuration[i] * hour.constant / 2
-    DtSy$St1cEnd[i] <- DtSy$time[i] + DtSy$St1cDuration[i] * hour.constant / 2 
+    DtSy$St1cEnd[i] <- DtSy$time[i] + DtSy$St1cDuration[i] * hour.constant / 2
     #CheckStart  <- DtSy$time[i] - DtSy$St1cDuration[i] * hour.constant  
     #CheckEnd <- DtSy$time[i] + DtSy$St1cDuration[i] * hour.constant 
   } else { # if duration is written down its not changed irregardless if other same symptom test are within that duration.
     #If its not then it must be calculated
-    DtSy$St1cStart[i] <- DtSy$time[i] - 12 * hour.constant / 2
-    DtSy$St1cEnd[i] <- DtSy$time[i] + 12 * hour.constant / 2  
-}
-for (i in 1:length(DtSy$St1cDuration)) {
- 
-  if(!is.na(DtSy$St1cDuration[i])){
-    DtSy$St1cStart[i] <- DtSy$time[i] - DtSy$St1cDuration[i] * hour.constant / 2
-    DtSy$St1cEnd[i] <- DtSy$time[i] + DtSy$St1cDuration[i] * hour.constant / 2 
-    #CheckStart  <- DtSy$time[i] - DtSy$St1cDuration[i] * hour.constant  
-    #CheckEnd <- DtSy$time[i] + DtSy$St1cDuration[i] * hour.constant 
-  } else { # if duration is written down its not changed irregardless if other same symptom test are within that duration.
-    #If its not then it must be calculated
+    DtSy$St1cChkStt[i] <- DtSy$time[i] - 12 * hour.constant 
+    DtSy$St1cChkEd[i] <- DtSy$time[i] + 12 * hour.constant   
     DtSy$St1cStart[i] <- DtSy$time[i] - 12 * hour.constant / 2
     DtSy$St1cEnd[i] <- DtSy$time[i] + 12 * hour.constant / 2 
-    CheckStart <- DtSy$time[i] - 12 * hour.constant
-    CheckEnd <- DtSy$time[i] + 12 * hour.constant
-
-    inbounds.end <- DtSy[DtSy$time[i] < time  & St1c == DtSy$St1c[i]]
-    inbounds.end <- inbounds.end[min(inbounds.end$time) == time]
-    inbounds.start <- DtSy[DtSy$time[i] > time & St1c == DtSy$St1c[i]]
-    inbounds.start <- inbounds.start[max(inbounds.start$time) == time]
-    
-    if( (inbounds.end$time[1] < CheckStart)  ){
-      DtSy$St1cEnd[i] <- DtSy$time[i] + (inbounds.end$time[1] - DtSy$time[i]) / 2
-    }
-    if( (inbounds.start$time[1] > CheckStart)  ){   
-      DtSy$St1cStart[i] <- DtSy$time[i] - (DtSy$time[i] - inbounds.start$time[1]) / 2
-    }
-    DtSy$St1cDuration[i] <- (DtSy$St1cEnd[i] - DtSy$St1cStart[i]) /  hour.constant
-     }
-    # add symptoms of strength 0 for those times I did not use mysym and cause using line graphs now
-    # conundrum; how to respect user input duration in placing not exactly zeroeth points
-    if(nrow(inbounds.end) < 0){
-      inbounds.end <- inbounds.end[min(inbounds.end$time) == time]
-      DtSy$St1cEnd[i] <- (inbounds.end$time[1] - DtSy$time[i]) / 2  + DtSy$time[i]
-    }
-    if(nrow(inbounds.start) < 0){
-      dt.one.event <- DtSy[i]
-      dt.one.event$time <- CheckStart
-      l = list(DtSyT,dt.one.event)
-      DtSyT<-rbindlist(l, use.names=TRUE)
-     }
-
   }
+}  
+
+add_zeroth_dummy <- function(timetoplace = DtSy$St1cChkEd[i]) {
+  dt.one.event <- DtSy[i]  
+  dt.one.event$time[1] <- timetoplace
+  dt.one.event$St1cQuant[1] <- 0
+  dt.one.event$St1cDuration[1] <- 0
+  dt.one.event$St1cChkStt <- NA
+  dt.one.event$St1cChkEd <- NA   
+  dt.one.event$St1cStart <- NA
+  dt.one.event$St1cEnd <- NA
+  dt.one.event$event[1] <- paste0(dt.one.event$event,".DUMMY")#because making a legit column is hard work
+  #dt.one.event$.id[1] <- ".DUMMY"
+  l = list(DtSyT,dt.one.event)
+  DtSyT <<- rbindlist(l, use.names=TRUE)
+  return(DtSyT)
+}
+# i <- 1001 overlap regular i <- 2  zerodummy on both sides and user input duration
+# i <- 53 for trainwreck of input duration
+#lazyness and easier to read causes no outer by symptoms loop. 
+for (i in 1:length(DtSy$time)) {
+  # add symptoms of strength 0 for those times I did not use mysym and cause using line graphs now
+   dummybounds <- DtSy[St1c == DtSy$St1c[i]]
+   dummybounds <- dummybounds[DtSy$St1cChkEd[i] > St1cChkStt]
+   dummybounds <- dummybounds[DtSy$St1cChkEd[i] < St1cChkEd]
+   if(length(dummybounds$time) == 0) {DtSyT<-add_zeroth_dummy(DtSy$St1cChkEd[i])}
+   dummybounds <- DtSy[St1c == DtSy$St1c[i]]
+   dummybounds <- dummybounds[DtSy$St1cChkStt[i] > St1cChkStt]
+   dummybounds <- dummybounds[DtSy$St1cChkStt[i] < St1cChkEd]
+   if(length(dummybounds$time) == 0) DtSyT<-add_zeroth_dummy(DtSy$St1cChkStt[i])
+    
+   # only end is calculated because it is space between events that is adjusted
+   # bounds of sample never overrun another
+   inbounds.end <- DtSy[DtSy$time[i] < time & St1c == DtSy$St1c[i]]
+    if(length(inbounds.end$time) == 0){ 
+      next()
+    } 
+   inbounds.end <- inbounds.end[min(inbounds.end$time) == time]
+   
+   ud<-T # user defined duration overrules autmatic deduced duration
+   if(is.na(DtSy$St1cDuration[i])) ud<-F 
+   udb<-T
+   if(is.na(inbounds.end$St1cDuration[1])) udb<-F 
+   
+  if( inbounds.end$St1cStart[1] < DtSy$St1cEnd[i] ){
+      if( ud==udb ){
+        agreementpoint <- DtSy$time[i] + (inbounds.end$time[1] - DtSy$time[i]) / 2
+        DtSy$St1cEnd[i] <- agreementpoint
+        DtSy[inbounds.end$time == time]$St1cStart <- agreementpoint
+      } else {
+        agreementpoint <- ud * DtSy$St1cEnd[i] + udb * inbounds.end$state1cStart[1]
+        agreementpoint <- min(inbounds.end$time[1],agreementpoint)
+        agreementpoint <- max(DtSy$time[i],agreementpoint)
+        DtSy$St1cEnd[i] <- agreementpoint
+        DtSy[inbounds.end$time == time]$St1cStart <- agreementpoint
+      }
+    }
+   
+  DtSy$St1cDuration[i] <- (DtSy$St1cEnd[i] - DtSy$St1cStart[i]) /  hour.constant
+  
 }
 DtSy$St1cDuration <- round(DtSy$St1cDuration,2)
-DtSy[,St1cImpact:=St1cQuant]#St1cDuration* because now using line graph instead of density
+l = list(DtSyT,DtSy)
+DtSy <- rbindlist(l, use.names=TRUE)
+DtSy <- DtSy[order(DtSy$time)]
 maxtime <- max(DtSy$time)+.8
+DtSy[ , St1cImpact := St1cQuant] #St1cDuration* because now using line graph instead of density
 
 
+if(F) { #dont need these things any more
 ggplot(DtSy, aes(y=St1cImpact, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(St1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("St1cQuant")
 ggplot(DtSy, aes(y=St1cQuant, x=time)) + geom_point(stat="identity", position="identity", alpha=0.5, size=3) + geom_line(stat="identity", position="identity", alpha=0.5) + facet_grid(St1c ~ .) + theme_grey() + theme(text=element_text(family="sans", face="plain", color="#000000", size=15, hjust=0.5, vjust=0.5)) + scale_size(range=c(1, 1)) + xlab("time") + ylab("St1cQuant")+ xlim(maxtime-20,maxtime )
   
@@ -343,7 +379,7 @@ ggplot(DtSy, aes(x = time, weights = St1cImpact)) + geom_density(adjust = 1/8) +
   facet_grid(St1c ~ .)  + xlim(maxtime-20,maxtime )
 dev.off()
 # + expand_limits(x = c(first.day, last.day)) 
-
+}
 #### dt recombine #####
 
 require(data.table)
