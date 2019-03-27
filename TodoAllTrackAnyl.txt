@@ -27,6 +27,8 @@ try out the competitors/coworkers
 # reordering time and degree
 # notes jump off and include long list of stuff they may belong to  
   
+  ask mysym to not destroy symptom records after a symptom has been removed or make a folder to drop these files in and then combine them later? 
+  
 Github has many of these resources. Start there.
 PLATFORM FOR RARE EVENTS DETECTION AND TIME CORRELATION ETC POSSIBLY AI WORK
  IF NO COMPETITOR HAS SIMILAR ALGORITHM
