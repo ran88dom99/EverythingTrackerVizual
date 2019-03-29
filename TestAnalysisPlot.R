@@ -280,7 +280,7 @@ dt.tests.day.mean<-dt.tests.day.mean[,.SD[1], by=time]
 #remove old columns
 dt.tests.day.mean[,names(dt.tests.day.mean)[2:before.daymeans] := NULL]
 
-
+try({
 if(T){ # no need to run twice
   require(corrplot)
   #
@@ -312,6 +312,8 @@ if(T){ # no need to run twice
   dev.off()
   edaeda<-eda(dt.tests.day.mean,plot = F)
 }
+})#end of errorish code
+
 # PCA Factor Analysis on missing values
 # islands instead of days
 # two more eda

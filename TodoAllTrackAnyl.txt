@@ -1,15 +1,23 @@
-#TO DO ALL TRACKER HEALTH ANALYTICS PROJECT
+TO DO ALL TRACKER HEALTH ANALYTICS PROJECT
+
+#PRIORITY
+newest ailments before leaving must consult doctors with 3:07 PM 12/11/2018
+
+zenobase for quant mind or anki or something
+see competitors 
+data flow chart
+every possible event type
+
+#PLANNING
 Tracker Journal Report
   after checking all others have made see todonew
   category graphs (already done?)
-  Single event type page;
-    One of the eda packages does this automaticaly
+  Single event type page; 
     NAME 
 	DESCRIPTION
 	Single graph like in category graphs
 	  with lower levels of heirarchy colorcoding
-      also in full and 20 days
-	  color used to indicate height
+      also in full and 20 days 
 	Notes Timeline under each main graph so every mentioned note is visible
 	  along side with notes attached reading left to right
 	or just table
@@ -18,18 +26,77 @@ Tracker Journal Report
 	  Again notes if both items included
 	  also strongly effected and co-ocurred
 	across category comparison
-	  
-  get miband data out then 
-try out the competitors/coworkers 
+
  
- at mySym and convergence
-# energy from this 
-# reordering time and degree
-# notes jump off and include long list of stuff they may belong to  
-  
+    
+Github has many resources on many things. Start there.
+ 
+try out my competitors 12:39 PM 1/14/2019 
+ zenobase is nice... idk
+ datasense 
+ openhuman must be at least a beginner/1course programmer and statistician but I can contribute directly
+ exist.io
+ 
+#SOCIAL AND MEDCINE
+ at least journals to report 12:51 AM 1/29/2019
+  such projects on openhumans and github repository of analysis
+  lets add a few aggregation and analysis apps to github and alt.to
+  does mysymptoms make a pretty journal report? 
+  again; competitors. do other journaling tracking apps make nice reports?
+
+read through sites dedicated to my QS issues 1:02 PM 2/22/2019
+
+who does not want this? anyone who needs to manage symptoms, habits, daily jostling 1:46 PM 2/26/2019
+ anyone who wants to be smarter or stronger 1:48 PM 2/26/2019
+ 
+#MYSYM AND OTHER MANUAL RECORDING APPS 
   ask mysym to not destroy symptom records after a symptom has been removed or make a folder to drop these files in and then combine them later? 
+ 
+medecine book self testing 3:19 PM 2/16/2019
+for example pain, sleep and distraction; I can only detect its severity when nearly meditating
+now add eyesight tests 
+suggested by good QS sites
+you mean quantified self? well yes but QS focuses more on the go devices
+any physical tests?
+ 
+An android journal app; See if i can find something better than mysymptoms.
+see "android journal app.txt"
   
-Github has many of these resources. Start there.
+# AUTOMATIC GADGET SOURCES 
+ accelerometer recoreder for rocking. see my comments in "digital biomarkers" on reddit
+ 
+ get data from googlefit and miwatch2 and weather 3:05 PM 12/11/2018
+ 
+  data sources; weather, quant mind, 3 wearables
+ 	  
+  get miband data out  
+  
+# COG TEST METHODS SITES
+dexterity testing method 6:38 PM 1/7/2019
+
+any games with coaches and really close statistics recording?
+or should I just glue together python 
+
+midquant parser converter.  maybe loading through one of the aggregators would be better  5:00 PM 12/19/2018
+
+#PARSERS
+keep in mind the aggregators in planning
+ 
+ reftractor formal cogtest  because it is slow and terrible
+ 
+ designate decimals using commas
+ 
+ debug 
+ 
+ mutiunit test
+
+ before cleanup must determine structure and heirarchy
+ cleanup diet journal file.
+   cleanup old data.
+   
+#ANALYSIS MULTIVARIATE
+cause effect simple samplers 10:12 PM 12/12/2018
+
 PLATFORM FOR RARE EVENTS DETECTION AND TIME CORRELATION ETC POSSIBLY AI WORK
  IF NO COMPETITOR HAS SIMILAR ALGORITHM
  rare events, time  series, causeation analysis, time analysis,
@@ -37,12 +104,7 @@ PLATFORM FOR RARE EVENTS DETECTION AND TIME CORRELATION ETC POSSIBLY AI WORK
  many-expiraments-at-once, false-discovery-rates.
  games with coaches? and statistics to recommend this or that
  look at stats to remember; already contains an anti-trending lead
- 
-try out my competitors 12:39 PM 1/14/2019 
- zenobase is nice... idk
- datasense 
- openhuman must be at least a beginner/1course programmer and statistician but I can contribute directly
- exist.io
+
 
  analyse the mnemosyne dataset? that is memeory dataset
  its one of the memorization softwares
@@ -56,73 +118,71 @@ You should do residuals analysis before reaching conclusions to ensure there isn
 The book has a computer program you can run. Alternatively, the recipe is so easy to follow you can do it with some columns on a piece of paper with a pencil.
 
 If you're going to do 60 days of work, you might as well be able to say something with a quantifiable amount of confidence. If you're going to do a multivariate test, use a multivariate experimental design.
- 
- 
- 
- filter is what ever rule helps predict both next it and others! that is make many P frame columns
- 
- 
- accelerometer recoreder for rocking. see my comments in "digital biomarkers" on reddit
- 
-any games with coaches and really close statistics recording?
-or should I just glue together python 
- 
- 
-An android journal app; See if i can find something better than mysymptoms.
- 
- report on each individual outcome variable needs notes printed that is cat and first level and degree removed
- 
- remove duration degree and firstlevel/categ for notes
-  
- check for separate notes mentioning the event type
- 
- rewrite parts of txt file not up to standard
-
- designate decimals using commas
- 
- 
- just on one var by time
-  rolling center 
-  rolling spread
-  rolling extremes
-  cycle/periodicity/mcmc?
-  
- extract learnin curve? define learning curve
- What window or function is best for determining upcoming datapoint? longest that predicts almost as well as best.
- 
- short window short incubation already repeated multiple times
-	many waves not one or single spline
- 	backup from similar effects 
-	 or at least checked that they could not have been measured
- same as above but not yet done and interesting
-
- 
- 
- state act graphs. MANY
- before cleanup must determine structure and heirarchy
- cleanup diet journal file.
- state act effects.
- cog test learning curve removal. Learning curve is smallest isotonic window 
- cog test scores analysis ; rolling window graph, reall correlation then path analysis. EFA PCA!
- data sources; weather, quant mind, 3 wearables
- 
- quantify then quantity graphs and cleanup old data. 
- 
-  
-dexterity testing method 6:38 PM 1/7/2019
-  
-midquant parser converter. 5:00 PM 12/19/2018
-
-cause effect simple samplers 10:12 PM 12/12/2018
-
-lots of cleanup and updating 9:37 PM 12/26/2018 
 
 Everythin about test interactions: learn alot more about time series analysis esp tools in taskview 10:04 PM 12/12/2018
 just correlation matrix using only real?? data and including least interesting in 20 bound 10:08 PM 12/12/2018
 What about efa pca on missing data 10:06 PM 12/12/2018
 
-
-newest ailments before leaving must consult doctors with 3:07 PM 12/11/2018
- get data from googlefit and miwatch2 and weather 3:05 PM 12/11/2018
- analysis must include severity scores? for symptoms and maybe duration? 3:07 PM 12/11/2018
+ how about n=1 evidence based medecine
  
+analogous problems include stock prediction based on other stocks? gysers and seizures and really time series 
+
+type of possible interaction 
+#1 short window short incubation already repeated multiple times
+	many waves not one or single spline
+ 	backup from similar effects 
+	 or at least checked that they could not have been measured
+ same as above but not yet done and interesting
+#2 co-ocurred symptoms; they are actually caused by the same thing
+see nechacke headche and spine ache and dizziness all have same peak and similarends 
+ 
+ 
+#UNIVARIATE ANALYSIS ESPECIALY TESTS
+ just on one test var by time
+  rolling center 
+  rolling spread
+  rolling extremes
+  cycle/periodicity/mcmc?
+  prediction from previous
+  prediction not given info before this time period in any sense
+  learning curves
+  deltas
+  
+ all tests must be taken at various intervals to determine expected variance within time
+ filter is what ever rule helps predict both next it and others! that is make many P frame columns
+  
+ extract learnin curve? define learning curve
+ What window or function is best for determining upcoming datapoint? longest that predicts almost as well as best.
+ 
+  cog test learning curve removal. Learning curve is smallest isotonic window 
+ cog test scores analysis ; rolling window graph, reall correlation then path analysis. EFA PCA!
+ correlation path analysis
+  
+ better rolling mean(for non symetric time series) 
+ 
+ 
+  
+  
+#META FACTORS
+ quantity of tests taken in a day is some measure of productivity; one full set takes 40 minutes
+ 
+#GRAPHS PLOTS
+ what do the 40'ths bars mean to any given user. Add a concept called big and little events to earmark the appropriate moments in the lines and combines graphs plots. 
+ see anchor dates
+ 
+ remove or modify left hand side axises
+ 
+ manualy set order of items
+
+ 
+#OTHER
+ look up independance analysis and consider the corrplot of not cores but dependence in all analyser
+ 
+#DONE
+ analysis must include severity scores? for symptoms and maybe duration? 3:07 PM 12/11/2018 9:12 PM 3/27/2019
+ 
+ report on each individual outcome variable needs notes printed that is cat and first level and degree removed 9:18 PM 3/27/2019
+ 
+  remove duration degree and firstlevel/categ for notes 9:34 PM 3/27/2019
+  
+ check for separate notes mentioning the event type 9:34 PM 3/27/2019
