@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 output/
-Thumbs.db
+**Thumbs.db
 .png
 *report*
 *.html
